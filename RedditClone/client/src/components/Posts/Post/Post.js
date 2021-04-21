@@ -14,7 +14,7 @@ const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
     const history = useHistory();
     const comments = () => {
-        history.push("/board");
+        history.push(`/board/${post._id}`)
     }
     return (
         <Card className={classes.card}>
