@@ -7,11 +7,15 @@ import moment from 'moment';
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/posts';
-
+import { useHistory } from 'react-router-dom';
 
 const Post = ({ post, setCurrentId }) => {
     const dispatch = useDispatch();
     const classes = useStyles();
+    const history = useHistory();
+    const comments = () => {
+        history.push("/board");
+    }
     return (
         <Card className={classes.card}>
               
@@ -36,6 +40,8 @@ const Post = ({ post, setCurrentId }) => {
             <CardActions className={classes.cardActions}>
         <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}><ThumbUpAltIcon fontSize="small" /> Like {post.likeCount} </Button>
         <Button size="small" color="primary" onClick={() =>dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
+        <Button size="small" color="primary" onClick={() => comments()}><DeleteIcon fontSize="small" /> Comment</Button>
+
       </CardActions>
 
       </Card>
