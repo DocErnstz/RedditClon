@@ -7,11 +7,14 @@ import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui
 import Input from './Input';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
+import { signin, signup } from '../../actions/auth';
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
     const state = null;
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
+    const [form, setForm] = useState(initialState);
     const handleShowPassword = () => setShowPassword(!showPassword);
     const [isSignup, setIsSignup] = useState(true);
     const dispatch = useDispatch();
@@ -19,31 +22,38 @@ const Auth = () => {
 
 
     const handleSubmit = (e) => {
-        
-      };
-    const handleChange = () => {
-
+      e.preventDefault();
+     
+      if (isSignup) {
+      
+        dispatch(signup(form, history));
+      } else {
+        dispatch(signin(form, history));
+      }
     };
-    const switchMode = () => {
-        setIsSignup((prevIsSignup) => !prevIsSignup);
-        setShowPassword(false);
-      };
-      const googleSuccess = async (res) => {
-        const result = res?.profileObj;
-        const token = res?.tokenId;
+    const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const switchMode = () => {
+      setIsSignup((prevIsSignup) => !prevIsSignup);
+      setShowPassword(false);
+    };
+    const googleSuccess = async (res) => {
+      const result = res?.profileObj;
+      const token = res?.tokenId;
+  
+      try {
+        dispatch({ type: "AUTH", data: { result, token } });
+  
+        history.push('/');
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    const googleError = () => {
+        console.log("error");
+    };
     
-        try {
-          dispatch({ type: "AUTH", data: { result, token } });
-    
-          history.push('/');
-        } catch (error) {
-          console.log(error);
-        }
-      };
-    
-      const googleError = () => {
-          console.log("error");
-      };
       
 
     return (
