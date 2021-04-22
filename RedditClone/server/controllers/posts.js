@@ -1,6 +1,7 @@
 import PostMessage from "../models/postMessage.js";
 import mongoose from 'mongoose';
 import express from 'express';
+//import Posts from "../../client/src/components/Posts/Posts.js";
 //return posts
 export const getPosts = async (req, res) => {
     try{
@@ -59,4 +60,22 @@ export const likePost = async (req, res) => {
     const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
     
     res.json(updatedPost);
+}
+
+export const AddComment = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    PostMessage.findOne({ _id: id })
+    .then(post => {
+      const newPost = {
+        displayName: req.body.displayName,
+        content: req.body.message
+      }
+
+      post.comments.unshift(newPost)
+
+      post.save().then(post => res.json(post))
+    })
+    
 }
