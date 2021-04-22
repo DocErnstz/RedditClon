@@ -11,7 +11,6 @@ import { signin, signup } from '../../actions/auth';
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
-    const state = null;
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
     const [form, setForm] = useState(initialState);
@@ -25,7 +24,6 @@ const Auth = () => {
       e.preventDefault();
      
       if (isSignup) {
-      
         dispatch(signup(form, history));
       } else {
         dispatch(signin(form, history));

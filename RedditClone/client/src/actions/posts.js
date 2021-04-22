@@ -1,8 +1,12 @@
 import * as api from "../api";
+
 export const getPosts = () => async (dispatch) => {
     try {
         const { data } = await api.fetchPosts();
-        dispatch({ type: "FETCH_ALL", payload: data});
+        console.log(data);
+        data.map((post) => (dispatch({ type: "DELETE", payload: post._id})))
+        data.map((post) => (dispatch({ type: "CREATE", payload: post})))
+        //dispatch({ type: "FETCH_ALL", payload: data});
     } catch(error){
         console.log(error.message);
     }
@@ -43,6 +47,16 @@ export const updatePost = (id, post) => async (dispatch) => {
       const { data } = await api.likePost(id);
   
       dispatch({ type: "LIKE", payload: data });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  export const AddComment = (id, comment) => async (dispatch) => {
+    try {
+      const { data } = await api.AddComment(id, comment);
+  
+      dispatch({ type: "COMMENT", payload: data });
     } catch (error) {
       console.log(error.message);
     }
