@@ -3,7 +3,6 @@ import * as api from "../api";
 export const getPosts = () => async (dispatch) => {
     try {
         const { data } = await api.fetchPosts();
-        console.log(data);
         data.map((post) => (dispatch({ type: "DELETE", payload: post._id})))
         data.map((post) => (dispatch({ type: "CREATE", payload: post})))
         //dispatch({ type: "FETCH_ALL", payload: data});
@@ -55,8 +54,8 @@ export const updatePost = (id, post) => async (dispatch) => {
   export const AddComment = (id, comment) => async (dispatch) => {
     try {
       const { data } = await api.AddComment(id, comment);
-  
-      dispatch({ type: "COMMENT", payload: data });
+      console.log(id);
+      dispatch({ type: "UPDATE", payload: data });
     } catch (error) {
       console.log(error.message);
     }
