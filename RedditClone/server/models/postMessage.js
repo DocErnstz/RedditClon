@@ -23,8 +23,12 @@ const postSchema = mongoose.Schema({
             content: {
                 type: String
             },
-            likes: { type: [String], default: [] }
-
+            likes: { type: [String], default: [] },
+            order: {
+                type: Number,
+                default: 0
+            },
+            CommentReply: { type: String }
         }
     ]
 });
