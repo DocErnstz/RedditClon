@@ -8,5 +8,5 @@ router.patch('/:id', updatePost);
 router.delete('/:id', deletePost);
 router.patch('/:id/likePost', likePost);
 router.put("/:id/AddComment", AddComment);
-router.delete("/:id", ClearComment);
+router.delete("/:id/ClearComment", ClearComment);
 export default router;

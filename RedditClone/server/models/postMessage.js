@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+const Schema = mongoose.Schema;
 const postSchema = mongoose.Schema({
     title: String,
     message: String,
@@ -16,19 +16,17 @@ const postSchema = mongoose.Schema({
     },
     comments: [
         {
-            displayName: {
-                type: String
+            creator: {
+                type: Schema.Types.ObjectId,
+            },
+            postId: {
+                type: Schema.Types.ObjectId,
             },
 
             content: {
                 type: String
             },
-            likes: { type: [String], default: [] },
-            order: {
-                type: Number,
-                default: 0
-            },
-            CommentReply: { type: String }
+            responseTo:  { type: Schema.Types.ObjectId },
         }
     ]
 });

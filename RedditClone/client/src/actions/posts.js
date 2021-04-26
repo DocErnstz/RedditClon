@@ -54,7 +54,7 @@ export const updatePost = (id, post) => async (dispatch) => {
   export const AddComment = (id, comment) => async (dispatch) => {
     try {
       const { data } = await api.AddComment(id, comment);
-      console.log(id);
+      console.log(data);
       dispatch({ type: "UPDATE", payload: data });
     } catch (error) {
       console.log(error.message);

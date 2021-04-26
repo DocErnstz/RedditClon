@@ -70,7 +70,9 @@ export const AddComment = async (req, res) => {
     .then(post => {
       const newPost = {
         displayName: req.body.displayName,
-        content: req.body.message
+        content: req.body.message,
+        order: req.body.order,
+        CommentReply: req.body.CommentReply
       }
 
       post.comments.unshift(newPost)
