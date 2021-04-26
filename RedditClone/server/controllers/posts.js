@@ -69,10 +69,10 @@ export const AddComment = async (req, res) => {
     PostMessage.findOne({ _id: id })
     .then(post => {
       const newPost = {
-        displayName: req.body.displayName,
-        content: req.body.message,
-        order: req.body.order,
-        CommentReply: req.body.CommentReply
+        creator: req.body.creator,
+        content: req.body.content,
+        responseTo: req.body.responseTo,
+        postId: req.body.postId
       }
 
       post.comments.unshift(newPost)

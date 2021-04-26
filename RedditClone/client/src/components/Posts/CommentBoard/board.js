@@ -18,25 +18,16 @@ const Board = ({ match }) => {
 
     
     useEffect(() => {
+        //console.log(post[0]);
         if(post[0]){
             setCommentLists(post[0].comments);
+            console.log(CommentLists);
         }
        
 
     }, [])
 
-    
-    const onSubmit = (e) => {
-        e.preventDefault()
-        console.log(postData);
-        if (post[0]) {  
-            dispatch(AddComment(post[0]._id, postData));
-            console.log(post.comments);
-        }
-      
-        
-       
-    }
+   
     const Reply = (comment) => {
         setReplyID(comment._id);
         setFormReply(!FormReply);
@@ -49,14 +40,7 @@ const Board = ({ match }) => {
             <div class="card">
              {post[0] ? post[0].message : "undefinied"}
             </div>
-             <form  onSubmit={onSubmit}>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">{name}</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" onChange={(e) => setPostData({ ...postData, message: e.target.value })}></textarea>
-                <button class="btn btn-outline-secondary" type="submit">Submit</button>
-
-            </div>
-        </form>
+             
          <div>
          <div>
 

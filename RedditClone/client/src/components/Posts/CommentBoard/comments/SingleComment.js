@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { AddComment } from "../../../../actions/posts.js";
 import { Comment, Avatar, Button, Input } from 'antd';
 const { TextArea } = Input;
 function SingleComment(props) {
-    const user = JSON.parse(localStorage.getItem('profile')).result.name
+    const user = JSON.parse(localStorage.getItem('profile')).result;
     const [CommentValue, setCommentValue] = useState("")
     const [OpenReply, setOpenReply] = useState(false)
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         setCommentValue(e.currentTarget.value)
@@ -16,23 +19,33 @@ function SingleComment(props) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
-        console.log("e");
+        console.log("a");
+        const postData = {
+            content: CommentValue,
+            creator: user._id,
+            postId: props.postId,
+            responseTo: props.comment._id,
+        }
+       
+        dispatch(AddComment(props.postId, postData));
+        
+        
     }
+
+
+    const actions = [
+        <span onClick={openReply} key="comment-basic-reply-to">Reply to </span>
+    ]
+
 
    
 
     return (
         <div>
             <Comment
-                
-                author={props.comment.writer.name}
-                avatar={
-                    <Avatar
-                        src={props.comment.writer.image}
-                        alt="image"
-                    />
-                }
+                actions={actions}
+                author={"Anon"}
+               
                 content={
                     <p>
                         {props.comment.content}

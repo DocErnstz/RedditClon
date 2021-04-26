@@ -23,7 +23,7 @@ function Comments(props) {
             creator: user._id,
             postId: props.postId
         }
-        console.log(props.CommentLists);
+       
         dispatch(AddComment(props.postId, postData));
         
         
@@ -41,7 +41,7 @@ function Comments(props) {
                 (!comment.responseTo &&
                     <React.Fragment>
                         <SingleComment comment={comment} postId={props.postId}  />
-                        
+                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id}/>
                     </React.Fragment>
                 )
             ))}
