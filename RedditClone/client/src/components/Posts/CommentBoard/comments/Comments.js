@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { Button, Input } from 'antd';
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
-import { AddComment } from "../../../../actions/posts.js";
+import { AddComment, getComment } from "../../../../actions/posts.js";
 import SingleComment from './SingleComment';
 import ReplyComment from './ReplyComment';
 const { TextArea } = Input;
 
 function Comments(props) {
     const user = JSON.parse(localStorage.getItem('profile')).result;
+    const posts = useSelector((state) => state.posts);
     const [Comment, setComment] = useState("");
     const dispatch = useDispatch();
 
@@ -24,8 +25,8 @@ function Comments(props) {
             postId: props.postId
         }
        
-        dispatch(AddComment(props.postId, postData));
-        
+        const comment = dispatch(AddComment(props.postId, postData));
+        comment.then((comments) => props.refreshFunction(comments[0]));
         
     }
 
@@ -37,11 +38,12 @@ function Comments(props) {
             {/* Comment Lists  */}
             {console.log(props.CommentLists)}
 
+            
             {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
                     <React.Fragment>
-                        <SingleComment comment={comment} postId={props.postId}  />
-                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id}/>
+                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
+                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction}/>
                     </React.Fragment>
                 )
             ))}

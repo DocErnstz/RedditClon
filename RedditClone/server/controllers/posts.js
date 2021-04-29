@@ -96,4 +96,14 @@ export const ClearComment = async (req, res) => {
 }
 
 
+export const getComment = async (req, res) => {
+    const { id } = req.params;
 
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    PostMessage.findOne({ _id: id })
+    .then(post => {
+
+      post.save().then(post => res.json(post.comments))
+    })
+    
+}

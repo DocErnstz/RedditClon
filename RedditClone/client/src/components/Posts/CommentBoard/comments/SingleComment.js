@@ -29,6 +29,8 @@ function SingleComment(props) {
        
         dispatch(AddComment(props.postId, postData));
         
+        const comment = dispatch(AddComment(props.postId, postData));
+        comment.then((comments) => props.refreshFunction(comments[0]));
         
     }
 
@@ -44,7 +46,7 @@ function SingleComment(props) {
         <div>
             <Comment
                 actions={actions}
-                author={"Anon"}
+                author={user.name}
                
                 content={
                     <p>

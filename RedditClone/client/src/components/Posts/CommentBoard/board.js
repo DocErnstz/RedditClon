@@ -9,7 +9,7 @@ const Board = ({ match }) => {
     // get state current posts
     const posts = useSelector((state) => state.posts);
     const post = posts.filter((post) => post._id === match.params.id);
-    const name = JSON.parse(localStorage.getItem('profile')).result.name
+    const name = JSON.parse(localStorage.getItem('profile')).result.name;
     const [FormReply, setFormReply] = useState(false);
     const [ReplyID, setReplyID] = useState("0");
     const [postData, setPostData] = useState({ creator: `${name}`, message: '', CommentReply: "0" });
@@ -17,15 +17,22 @@ const Board = ({ match }) => {
     const dispatch = useDispatch();
 
     
+  
     useEffect(() => {
         //console.log(post[0]);
+        console.log("as");
         if(post[0]){
             setCommentLists(post[0].comments);
             console.log(CommentLists);
         }
        
 
-    }, [])
+    })
+    const updateComment = (newComment) => {
+        setCommentLists(CommentLists.concat(newComment))
+    }
+   
+    
 
    
     const Reply = (comment) => {
@@ -44,7 +51,7 @@ const Board = ({ match }) => {
          <div>
          <div>
 
-             {post[0] ?  <Comments CommentLists={CommentLists} postId={post[0]._id} /> : ""}
+             {post[0] ?  <Comments CommentLists={CommentLists} postId={post[0]._id} refreshFunction={updateComment}/> : ""}
              
          </div>
        

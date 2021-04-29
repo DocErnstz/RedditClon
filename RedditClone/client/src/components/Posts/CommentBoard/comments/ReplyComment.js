@@ -14,7 +14,7 @@ function ReplyComment(props) {
                 commentNumber++
             }
         })
-        setChildCommentNumber(commentNumber)
+        setChildCommentNumber(commentNumber);
     }, [props.CommentLists, props.parentCommentId])
 
 
