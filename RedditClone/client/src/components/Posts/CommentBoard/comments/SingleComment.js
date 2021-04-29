@@ -36,7 +36,7 @@ function SingleComment(props) {
 
 
     const actions = [
-        <span onClick={openReply} key="comment-basic-reply-to">Reply to </span>
+        <span class="badge badge-pill badge-danger"onClick={openReply} key="comment-basic-reply-to">Reply to </span>
     ]
 
 
@@ -44,17 +44,14 @@ function SingleComment(props) {
 
     return (
         <div>
-            <Comment
-                actions={actions}
-                author={user.name}
-               
-                content={
-                    <p>
-                        {props.comment.content}
-                    </p>
-                }
-            ></Comment>
-
+           <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{user.name}</h5>
+    <p class="card-text">{props.comment.content}</p>
+    {actions}
+  </div>
+</div>
+            
 
             {OpenReply &&
                 <form style={{ display: 'flex' }} onSubmit={onSubmit}>
