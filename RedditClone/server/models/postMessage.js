@@ -14,6 +14,10 @@ const postSchema = mongoose.Schema({
         type: Date,
         default: new Date()
     },
+    subreddit: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Subreddit',
+      },
     comments: [
         {
             creator: {
