@@ -74,7 +74,7 @@ export const AddComment = async (req, res) => {
     .then(post => {
       const newComment = {
         creator: req.body.creator,
-        content: req.body.message,
+        content: req.body.content,
         responseTo: req.body.responseTo,
         postId: req.body.postId
       }

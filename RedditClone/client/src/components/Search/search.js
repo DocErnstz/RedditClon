@@ -7,9 +7,7 @@ import { useSelector } from "react-redux";
 
 
 const Searchbar = () => {
-    const handleSubmit = () => {
-        console.log("as");
-    }   
+    
     const [key, setKey] = useState("");
     
     const dispatch = useDispatch();
@@ -25,7 +23,7 @@ const Searchbar = () => {
         <div className="container">
             <div class="row align-items-center">
                 <div className="col">
-                    <form onSubmit={handleSubmit}>
+                    
                         <input
                         type="text"
                         className="form-control"
@@ -33,7 +31,7 @@ const Searchbar = () => {
                         onChange={(e) => setKey(e.target.value)}
                         autoFocus
                         />
-                    </form>
+                   
                 </div>
             </div>
             <div class="d-flex flex-column">
