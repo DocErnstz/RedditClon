@@ -30,7 +30,6 @@ const App = () => {
                 <Route path="/r/:title/:id" exact component={Home}/>
                 <Route path="/" exact component={Searchbar}/>
             </Switch>
-            
         </Container>
         </BrowserRouter>
         

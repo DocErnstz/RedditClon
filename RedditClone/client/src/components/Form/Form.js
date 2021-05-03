@@ -21,15 +21,17 @@ const Form = ({ currentId, setCurrentId }) => {
     setCurrentId(0);
     setPostData({ title: '', message: '', tags: '', selectedFile: '' });
   };
-
+  const url = window.location.pathname;
+  const id = url.substring(url.lastIndexOf('/') + 1);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name, subreddit: id}));
       clear();
     } else {
-      dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
+      dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, subreddit: id}));
       clear();
     }
   };

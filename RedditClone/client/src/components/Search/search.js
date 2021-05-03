@@ -14,11 +14,11 @@ const Searchbar = () => {
     useEffect(() => {
         dispatch(getSubs());
     });
-    const subs = useSelector((state) => state.subs);
+    const subs  = useSelector(state => state.subs);
     const filter_subs = subs.filter(sub => sub.title.includes(key));
     const prefix = "r/";
     const space = "/";
-
+    console.log(subs);
     return (
         <div className="container">
             <div class="row align-items-center">
@@ -34,12 +34,18 @@ const Searchbar = () => {
                    
                 </div>
             </div>
-            <div class="d-flex flex-column">
-            {filter_subs.map(sub => <div class="p-2"><a href={prefix + sub.title + space + sub._id}>{sub.title}</a></div>)}
-            </div>
+            {filter_subs.map((sub) => (<div class="card">
+                                        <div class="row">
+                                            <div className="col">
+                                                <div className="card-body">
+                                                    <div className="card-title">
+                                                       <a href={prefix + sub.title + space + sub._id}>{sub.title}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div></div>))}
         </div>
-        
-    );
+    )
 }
 
 export default Searchbar;

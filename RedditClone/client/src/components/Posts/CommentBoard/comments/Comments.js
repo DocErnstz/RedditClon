@@ -33,7 +33,7 @@ function Comments(props) {
     return (
         <div>
             <br />
-            <p> replies</p>
+            <h5> Replies</h5>
             <hr />
             {/* Comment Lists  */}
             {console.log(props.CommentLists)}
@@ -59,7 +59,7 @@ function Comments(props) {
                     placeholder="write some comments"
                 />
                 <br />
-                <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</Button>
+                <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}><h5>Post</h5></Button>
             </form>
 
         </div>

@@ -44,18 +44,20 @@ const Board = ({ match }) => {
    
     return (
         <div>
-            <div class="card">
-             {post[0] ? post[0].message : "undefinied"}
-            </div>
-             
-         <div>
-         <div>
+            <div class="container">
+            {post[0] ? (<div class="card">
+                          <div className="card-body">
+                          <h5 class="card-title">{post[0].title}</h5>
+                          <p class="card-text">{post[0].message}</p>
+
+                              </div>
+                        </div>) : ""}
 
              {post[0] ?  <Comments CommentLists={CommentLists} postId={post[0]._id} refreshFunction={updateComment}/> : ""}
              
          </div>
        
-         </div>
+         
          
         </div> 
        
