@@ -39,7 +39,7 @@ const Searchbar = () => {
                                             <div className="col">
                                                 <div className="card-body">
                                                     <div className="card-title">
-                                                       <a href={prefix + sub.title + space + sub._id}>{sub.title}</a>
+                                                       <a href={prefix + sub.title + space + sub._id} class="display-3"><h4>{sub.title}</h4></a>
                                                     </div>
                                                 </div>
                                             </div>

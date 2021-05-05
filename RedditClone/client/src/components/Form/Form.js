@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 
 import { createPost, updatePost } from '../../actions/posts';
-import useStyles from './styles';
+import styles from './styles.css';
+import { amber } from '@material-ui/core/colors';
 
 const Form = ({ currentId, setCurrentId }) => {
-  const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' });
+  const [postData, setPostData] = useState({ title: '', message: '', selectedFile: '' });
   const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
-  const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
@@ -19,14 +19,14 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const clear = () => {
     setCurrentId(0);
-    setPostData({ title: '', message: '', tags: '', selectedFile: '' });
+    setPostData({ title: '', message: '',  selectedFile: '' });
   };
   const url = window.location.pathname;
   const id = url.substring(url.lastIndexOf('/') + 1);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(postData);
     if (currentId === 0) {
       dispatch(createPost({ ...postData, name: user?.result?.name, subreddit: id}));
       clear();
@@ -35,29 +35,58 @@ const Form = ({ currentId, setCurrentId }) => {
       clear();
     }
   };
-
+  const handleChange = (e) => {
+    setPostData({ ...postData, [e.target.name]: e.target.value })
+  };
   if (!user?.result?.name) {
     return (
-      <Paper className={classes.paper}>
-        <Typography variant="h6" align="center">
-          Please Sign In to create your own memories and like other's memories.
-        </Typography>
-      </Paper>
+      <div class="ad">
+       <h1>Create a user to post</h1>
+      </div>
     );
   }
 
   return (
-    <Paper className={classes.paper}>
-      <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</Typography>
-        <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
-        <TextField name="message" variant="outlined" label="Message" fullWidth multiline rows={4} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
-        <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
-        <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} /></div>
-        <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-        <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
-      </form>
-    </Paper>
+    <div>
+      <div class="post">
+        <button class="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"><h5>Post</h5></button>
+   </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Post Data</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {user.result.name ? (<form onSubmit={handleSubmit}>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Title</label>
+          <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="..." onChange={handleChange}/>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+          <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3" onChange={handleChange}></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Image</label>
+          <div><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} /></div>
+        </div>
+        <button class="button" type="submit"><h5>Send</h5></button>
+        </form>) : "log to post"}      
+        <div>
+        </div> 
+     
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+    </div>
+    
+
   );
 };
 

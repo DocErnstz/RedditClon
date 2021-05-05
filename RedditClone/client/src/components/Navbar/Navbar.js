@@ -32,7 +32,7 @@ const Navbar = () => {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
@@ -43,9 +43,14 @@ const Navbar = () => {
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/auth">Sign Up</a></li>
             <li><a class="dropdown-item" href="/auth">Sign In</a></li>
+            {user ? (<li><button class="dropdown-item" onClick={logout}>Log Out</button></li>) : ""}
           </ul>
         </li>
       </ul>
+      {user ? (<span class="navbar-text">
+      <h4>{user.result.name}</h4>
+    </span>) : ""}
+      
     </div>
   </div>
 </nav>
