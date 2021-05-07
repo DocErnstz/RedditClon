@@ -7,3 +7,4 @@ very simplified clone of reddit made with react
 - Nodejs
 - Redux
 - Bootstrap
+- CSS
