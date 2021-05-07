@@ -2,7 +2,7 @@
 Very simplified clone of reddit made with react
 
 ## What i learned
-From this project i learned how to include list into schema models and how to link schema models to others models
+From this project i learned how to include list into schema models, how to link schema models to others models and i also learned how to use recursion to make a nested reply/comments system
 
 ## Technologies
 - MongoDB
