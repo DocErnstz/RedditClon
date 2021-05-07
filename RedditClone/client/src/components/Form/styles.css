@@ -1,12 +1,26 @@
-.button{
+.btnn{
+  border-radius: 15px;
+  border: none;
+  color: white;
+  background-color: red;
+  border-color: teal;
+  font-size: 10px;
+  font-weight: normal;
+  text-align: center;
   padding: 10px 10px;
+
+  cursor: pointer;
 }
 .post{
-  height: 100%;
+  position: fixed;
+  width: 600px;
+  height: 20%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  top: 60%;
+
 }
 .ad{
   height: 100%;

@@ -47,10 +47,11 @@ const Form = ({ currentId, setCurrentId }) => {
   }
 
   return (
+    
     <div>
-      <div class="post">
-        <button class="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"><h5>Post</h5></button>
-   </div>
+    <div class="post">
+      <button className="btnn"> <h5>Post</h5> </button>
+   </div>  
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

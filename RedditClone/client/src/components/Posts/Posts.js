@@ -13,14 +13,13 @@ const Posts = ({ setCurrentId }) => {
     return (
         !posts.length ? <CircularProgress/> : (
             <div>
+                <div className="row">
                 {sub_posts.map((post) => (
-                    <div class="row" style={{marginTop:"100px"}}>
-                        <div className="col">
+                        <div className="col-12">
                         <Post post={post} setCurrentId={setCurrentId}></Post>
                         </div>
-                        
-                    </div>
                 ))}
+                </div>
             </div>
            
         )
