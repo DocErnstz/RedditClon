@@ -1,5 +1,5 @@
 # RedditClon
-very simplified of reddit made with react
+very simplified clone of reddit made with react
 # Technologies
 - MongoDB
 - Express
