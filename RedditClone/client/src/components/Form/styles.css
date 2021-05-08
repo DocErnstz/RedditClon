@@ -1,25 +1,14 @@
-.btnn{
-  border-radius: 15px;
-  border: none;
-  color: white;
-  background-color: red;
-  border-color: teal;
-  font-size: 10px;
-  font-weight: normal;
-  text-align: center;
-  padding: 10px 10px;
-
-  cursor: pointer;
+.btn{
+  background-color: black;
+  width: 200px;
 }
+
 .post{
   position: fixed;
   width: 600px;
   height: 20%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: flex-end;
-  top: 60%;
+  bottom: 0px;
+  left: calc(50% + 210px);
 
 }
 .ad{

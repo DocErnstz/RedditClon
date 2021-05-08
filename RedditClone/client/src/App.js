@@ -23,14 +23,14 @@ const App = () => {
     return (
         <BrowserRouter>
         <Container maxidth="lg">
-            <Navbar/>
-            <Switch>
+        <Navbar/>
+        <Switch>
                 <Route path="/auth" exact component={Auth}/>
                 <Route path="/board/:id" exact component={CommentBoard}/>
                 <Route path="/r/:title/:id" exact component={Home}/>
                 <Route path="/" exact component={Searchbar}/>
             </Switch>
-        </Container>
+            </Container>
         </BrowserRouter>
         
     );    

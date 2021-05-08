@@ -29,7 +29,7 @@ export const signup = (formData, router) => async (dispatch) => {
     //get user model data with token
     const { data } = await api.signUp(formData);
     console.log(data);
-    //dispatch({ type: "AUTH", data });
+    dispatch({ type: "AUTH", data });
     //asdsadsa
     router.push('/');
   } catch (error) {

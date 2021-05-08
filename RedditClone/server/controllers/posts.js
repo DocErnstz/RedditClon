@@ -56,7 +56,7 @@ export const deletePost = async (req, res) => {
 
 export const likePost = async (req, res) => {
     const { id } = req.params;
-
+    console.log(req.userId);
     if (!req.userId) {
         return res.json({ message: "Unauthenticated" });
       }

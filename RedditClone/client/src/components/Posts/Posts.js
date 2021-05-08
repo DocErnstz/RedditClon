@@ -7,7 +7,6 @@ import { CircularProgress, Grid } from "@material-ui/core";
 const Posts = ({ setCurrentId }) => {
     // get state current posts
     const posts = useSelector((state) => state.posts);
-    console.log(posts);
     const { id } = useParams();
     const sub_posts = posts.filter(post => post.subreddit === id);
     return (

@@ -17,12 +17,13 @@ const Home = () => {
     return (
         <div class="container">
             <div className="row">
-                <div className="col">
-                <Posts setCurrentId={setCurrentId}/>
-                </div>
-                <div className="col">
+            <div className="col-12 col2">
                 <Form currentId={currentId} setCurrentId={setCurrentId}/>
                 </div>
+                <div className="col-12 col1">
+                <Posts setCurrentId={setCurrentId}/>
+                </div>
+                
             </div>
         </div>
                
