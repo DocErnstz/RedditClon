@@ -1,0 +1,20 @@
+.btn{
+  background-color: black;
+  width: 200px;
+}
+
+.post{
+  position: fixed;
+  width: 600px;
+  height: 20%;
+  bottom: 0px;
+  left: calc(50% + 210px);
+
+}
+.ad{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

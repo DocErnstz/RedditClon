@@ -1,0 +1,7 @@
+.row {
+    height: 5em;
+    margin: 10px 0;
+  }
+.card-title a:hover {
+    text-decoration:none;
+}
