@@ -8,7 +8,8 @@ import Home from "./components/Home/Home";
 import Searchbar from "./components/Search/search";
 import Auth from "./components/Auth/Auth";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CommentBoard from "./components/Posts/CommentBoard/board"
+import CommentBoard from "./components/Posts/CommentBoard/board";
+import "./index.css";
 const App = () => {
     const dispatch = useDispatch();
     const [currentId] = useState(0);
@@ -17,7 +18,7 @@ const App = () => {
     }, [currentId, dispatch]);
     return (
         <BrowserRouter>
-        <Container maxidth="lg">
+    
         <Navbar/>
         <Switch>
                 <Route path="/auth" exact component={Auth}/>
@@ -25,7 +26,7 @@ const App = () => {
                 <Route path="/r/:title/:id" exact component={Home}/>
                 <Route path="/" exact component={Searchbar}/>
             </Switch>
-            </Container>
+           
         </BrowserRouter>
         
     );    

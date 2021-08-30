@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300;400&display=swap");
+
+body {
+  height: 100vh;
+  background-color: red;
+  font-family: "Mulish", sans-serif;
+}
+
+.fa-reddit {
+  color: red;
+}
+
+
+input.form-control:focus {
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  border: 1px solid #ced4da;
+  outline: none;
+}
+input[type="text"] {
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  border: 1px solid #ced4da;
+  outline: none;
+}
+
+#Mainbar {
+  margin: 20px auto;
+  width: 900px;
+}
+
+#votes > i {
+  font-size: 20px;
+}
+
+#subImg{
+  background-image: url("./img/planets.jpg");
+}
+.fa-globe{
+  transition: all 0.4s ease-in-out;
+}
+.fa-globe:hover{
+   transform: rotateY(360deg);
+}
+
+#imgForm{
+  background-image: url("./img/planets.jpg");
+}
+.sub {
+  background-image: url("./img/planets.jpg");
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+}
+
+.slice {
+  height: 50px;
+}
+
+
+@media (max-width: 604px) {
+  #brand {
+    display: none;
+  }
+}
+@media (max-width: 576px) {
+  .navbar > div {
+    padding: 0px;
+  }
+  #Mainbar {
+    width: 100vw;
+    margin: 0px;
+  }
+  
+}
+#lsButton{
+  font-size: 10px; 
+  width: 40px;
+  display: flex;
+  align-items: center;
+
+}
+
+@media (max-width: 768px) {
+  #infoReddit {
+    display: none;
+  }
+  #homePosts {
+    padding: 0px;
+    margin: 0 auto;
+  }
+  #infoUser > div{
+    font-size: 11px;
+  }
+  #userIcon{
+    font-size: 20px;
+  }
+  #lsButton{
+    width: 10px;
+    padding: 0;
+    
+  }
+  #lsButton > i{
+    font-size: 10px;
+   
+  }
+  .navbar-brand{
+    font-size: 10px;
+  }
+}

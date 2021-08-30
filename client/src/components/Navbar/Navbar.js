@@ -19,72 +19,37 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="/">
-          Reddin
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Settings
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a className="dropdown-item" href="/auth">
-                    Sign Up
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="/auth">
-                    Sign In
-                  </a>
-                </li>
-                {user ? (
-                  <li>
-                    <button className="dropdown-item" onClick={logout}>
-                      Log Out
-                    </button>
-                  </li>
-                ) : (
-                  ""
-                )}
-              </ul>
-            </li>
-            <li>
-              <div className="row">
-                <div className="col bg-red"></div>
-                <div className="col"></div>
-              </div>
-            </li>
-          </ul>
-
-          {user ? (
-            <span className="navbar-text">
-              <h4>{user.result.name}</h4>
-            </span>
-          ) : (
-            ""
-          )}
+    <nav class="navbar shadow navbar-expand-lg navbar-light bg-light sticky-top" style={{width: "100vw"}, {padding: ".5rem 0"}}>
+      <div class="container-fluid"> 
+        <a class="navbar-brand m-0 p-2" href="#"
+          ><i class="fab fa-reddit-alien fa-2x"></i></a>
+        <div class="m-2 h3" id="brand">Reddit</div>
+        
+       
+        <div class="d-flex flex-grow-1" id="navbarSupportedContent">
+          <form class="d-flex flex-grow-1 border">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text bg-white border-0" id="addon-wrapping"
+                ><i class="fas fa-search"></i></span>
+              <input
+                type="search"
+                class="form-control border-0 h-100"
+                placeholder="Search Reddit"
+                aria-label="SearchReddit"
+                aria-describedby="addon-wrapping"
+            
+              />
+            </div>
+          </form>
+          <div class="d-flex">
+           <div class="d-flex align-items-center p-2"><a href="">
+             <i class="far fa-user fa-2x"></i>
+             </a></div>
+           <div class="d-flex flex-column">
+             <div>Mercadoernesto</div>
+             <div>Karma 999</div>
+           </div>
+          </div>
         </div>
       </div>
     </nav>
