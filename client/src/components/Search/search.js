@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
-import search from "./search.css";
 import { getSubs } from "../../actions/subs";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import SubCard from "./SubCard.js";
+import { v4 as uuidv4 } from 'uuid';
 
 const Searchbar = () => {
   const [key, setKey] = useState("");
 
   const dispatch = useDispatch();
-  useEffect(() => {
+   useEffect(() => {
     dispatch(getSubs());
   });
   const subs = useSelector((state) => state.subs);
   const filter_subs = subs.filter((sub) => sub.title.includes(key));
   const prefix = "r/";
   const space = "/";
-  console.log(subs);
   return (
     <div className="container">
-      <h1>sa</h1>
-      <div class="row align-items-center">
+      <div className="row align-items-center">
         <div className="col">
           <input
             type="text"
@@ -31,22 +30,7 @@ const Searchbar = () => {
         </div>
       </div>
       {filter_subs.map((sub) => (
-        <div class="card">
-          <div class="row">
-            <div className="col">
-              <div className="card-body">
-                <div className="card-title">
-                  <a
-                    href={prefix + sub.title + space + sub._id}
-                    class="display-3"
-                  >
-                    <h4>{sub.title}</h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SubCard sub={sub} key={uuidv4()} />
       ))}
     </div>
   );

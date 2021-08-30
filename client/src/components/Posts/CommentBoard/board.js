@@ -1,6 +1,5 @@
-import React, { Component, useEffect, useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AddComment } from "../../../actions/posts.js";
 import board from "./board.css";
 import Comments from "./comments/Comments.js";
 
@@ -19,11 +18,8 @@ const Board = ({ match }) => {
     
   
     useEffect(() => {
-        //console.log(post[0]);
-        console.log("as");
         if(post[0]){
             setCommentLists(post[0].comments);
-            console.log(CommentLists);
         }
        
 
@@ -44,11 +40,11 @@ const Board = ({ match }) => {
    
     return (
         <div>
-            <div class="container">
-            {post[0] ? (<div class="card">
+            <div className="container">
+            {post[0] ? (<div className="card">
                           <div className="card-body">
-                          <h5 class="card-title">{post[0].title}</h5>
-                          <p class="card-text">{post[0].message}</p>
+                          <h5 className="card-title">{post[0].title}</h5>
+                          <p className="card-text">{post[0].message}</p>
 
                               </div>
                         </div>) : ""}

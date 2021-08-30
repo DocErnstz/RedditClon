@@ -1,9 +1,9 @@
 import React from "react";
 import Post from "./Post/Post"
 import { useSelector } from "react-redux";
-import { useParams, Link as RouterLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useStyles from "./styles";
-import { CircularProgress, Grid } from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 const Posts = ({ setCurrentId }) => {
     // get state current posts
     const posts = useSelector((state) => state.posts);

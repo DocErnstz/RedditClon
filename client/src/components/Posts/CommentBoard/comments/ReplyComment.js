@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SingleComment from './SingleComment';
+import { v4 as uuidv4 } from 'uuid';
+
 
 function ReplyComment(props) {
 
@@ -20,11 +22,11 @@ function ReplyComment(props) {
 
     let renderReplyComment = (parentCommentId) =>
         props.CommentLists.map((comment, index) => (
-            <React.Fragment>
+            <React.Fragment key={uuidv4()}>
                 {comment.responseTo === parentCommentId &&
                     <div style={{ width: '80%', marginLeft: '40px', marginTop: "40px" }}>
-                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
-                        <ReplyComment CommentLists={props.CommentLists} parentCommentId={comment._id} postId={props.postId} />
+                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} key={uuidv4()}/>
+                        <ReplyComment CommentLists={props.CommentLists} parentCommentId={comment._id} postId={props.postId} key={uuidv4()}/>
                     </div>
                 }
             </React.Fragment>

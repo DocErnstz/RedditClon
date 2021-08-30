@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AddComment } from "../../../../actions/posts.js";
-import { Comment, Avatar, Button, Input } from 'antd';
+import { Button, Input } from 'antd';
 const { TextArea } = Input;
 function SingleComment(props) {
     const user = JSON.parse(localStorage.getItem('profile')).result;
@@ -16,7 +16,7 @@ function SingleComment(props) {
     const openReply = () => {
         setOpenReply(!OpenReply)
     }
-    console.log(props.comment);
+
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -36,7 +36,7 @@ function SingleComment(props) {
 
 
     const actions = [
-        <span class="badge badge-pill badge-danger"onClick={openReply} key="comment-basic-reply-to">Reply to </span>
+        <span className="badge badge-pill badge-danger"onClick={openReply} key="comment-basic-reply-to">Reply to </span>
     ]
 
 
@@ -44,10 +44,10 @@ function SingleComment(props) {
 
     return (
         <div>
-           <div class="card">
-  <div class="card-body">
-    <h5 class="card-title">{user.name}</h5>
-    <p class="card-text">{props.comment.content}</p>
+           <div className="card">
+  <div className="card-body">
+    <h5 className="card-title">{user.name}</h5>
+    <p className="card-text">{props.comment.content}</p>
     {actions}
   </div>
 </div>

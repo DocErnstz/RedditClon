@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import memories from "./images/memories.png";
-import Posts from "./components/Posts/Posts";
-import Form from "./components/Form/Form";
-import useStyles from "./styles";
+import { Container } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { getPosts } from './actions/posts';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -14,9 +10,8 @@ import Auth from "./components/Auth/Auth";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CommentBoard from "./components/Posts/CommentBoard/board"
 const App = () => {
-    const classes = useStyles();
     const dispatch = useDispatch();
-    const [currentId, setCurrentId] = useState(0);
+    const [currentId] = useState(0);
     useEffect(() => {
         dispatch(getPosts());
     }, [currentId, dispatch]);

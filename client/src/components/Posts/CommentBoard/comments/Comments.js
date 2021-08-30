@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Input } from 'antd';
-import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from "react-redux";
 import { AddComment, getComment } from "../../../../actions/posts.js";
 import SingleComment from './SingleComment';
@@ -36,22 +36,20 @@ function Comments(props) {
             <h5> Replies</h5>
             <hr />
             {/* Comment Lists  */}
-            {console.log(props.CommentLists)}
 
-            
             {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
-                    <React.Fragment>
-                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
-                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction}/>
+                    <React.Fragment key={uuidv4()}>
+                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} key={uuidv4()} />
+                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction} key={uuidv4()} />
                     </React.Fragment>
                 )
             ))}
 
 
-
             {/* Root Comment Form */}
             <form style={{ display: 'flex' }} onSubmit={onSubmit}>
+                1
                 <TextArea
                     style={{ width: '100%', borderRadius: '5px' }}
                     onChange={handleChange}
