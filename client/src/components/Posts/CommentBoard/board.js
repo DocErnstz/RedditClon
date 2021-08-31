@@ -29,8 +29,8 @@ const Board = ({ match }) => {
     }
 
     return (
-        <div>
-            <div className="container">
+        <div id="Commentbar" style={{margin: "20px 100px", width: "calc(100% - 160px)"}}>
+            <div className="d-flex">
             {post[0] ? (  <div class="bg-white me-3 p-2 d-flex flex-column flex-grow-1">
            <div class="d-flex">
              <div id="votes" class="d-flex flex-column pe-2">
@@ -49,8 +49,33 @@ const Board = ({ match }) => {
               </div>
               
            </div>
+           {post[0] ?  <Comments CommentLists={CommentLists} postId={post[0]._id} refreshFunction={updateComment}/> : ""}
         </div>  ) : ""}
-             {post[0] ?  <Comments CommentLists={CommentLists} postId={post[0]._id} refreshFunction={updateComment}/> : ""}
+             
+             <div id="infoReddit" style={{flexBasis: "600px", height: "350px"}}>
+           <div class="card p-0 my-0 mx-auto "  style={{width: "18rem", height: "110%"}}>
+  <div class="bg-primary w-100" style={{height: "40px"}}></div>
+  <div class="card-body">
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem debitis mollitia quidem vitae expedita consequuntur sequi minus hic deserunt dicta eius rem, incidunt recusandae odio, molestiae asperiores accusamus, aspernatur.</p>
+    <div class="d-flex">
+      <div class="d-flex flex-column flex-grow-1">
+        <h5>70k</h5>
+        <p>Members</p>
+      </div>
+      <div class="d-flex flex-column flex-grow-1">
+        <h5>10</h5>
+        <p>Online</p>
+      </div>
+      
+    </div>
+     <div class="d-flex align-items-center">
+      <i class="fas fa-birthday-cake fa-2x me-2"></i>
+      <div class="h-50">Created Jun 1, 2003</div>
+    </div>
+    </div>
+   
+  </div>
+</div>
          </div>
         </div> 
     );

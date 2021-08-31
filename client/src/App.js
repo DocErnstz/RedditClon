@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { getPosts } from './actions/posts';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home/Home";
+import Home from "./components/SubHome/Home";
 import Homebar from "./components/RealHome/Home";
 import Auth from "./components/Auth/Auth";
 import 'bootstrap/dist/css/bootstrap.min.css';
