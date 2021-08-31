@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <div>
-       <nav class="navbar shadow navbar-expand-lg navbar-light bg-light sticky-top" style={{width: "100vw", padding: ".5rem 0"}}>
+       <nav class="navbar shadow navbar-expand-lg navbar-light bg-light sticky-top" style={{padding: ".5rem 0"}}>
       <div class="container-fluid"> 
         <a class="navbar-brand m-0 p-2" href="#"
           ><i class="fab fa-reddit-alien fa-2x"></i></a>
@@ -40,8 +40,13 @@ const Navbar = () => {
                 aria-describedby="addon-wrapping"
             
               />
+                 <div style={{position: "fixed", right: "0px"}}>1</div>
+         
+               
             </div>
+         
           </form>
+          
           <div class="d-flex">
            <div class="d-flex align-items-center p-2"><a href="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
              <i class="far fa-user fa-2x"></i>

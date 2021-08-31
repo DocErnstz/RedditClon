@@ -4,7 +4,7 @@ import { AddComment } from "../../../../actions/posts.js";
 import { Button, Input } from 'antd';
 const { TextArea } = Input;
 function SingleComment(props) {
-    const user = JSON.parse(localStorage.getItem('profile')).result;
+    //const user = JSON.parse(localStorage.getItem('profile')).result;
     const [CommentValue, setCommentValue] = useState("")
     const [OpenReply, setOpenReply] = useState(false)
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function SingleComment(props) {
         e.preventDefault();
         const postData = {
             content: CommentValue,
-            creator: user._id,
+            creator: "mercadoernesto",
             postId: props.postId,
             responseTo: props.comment._id,
         }
@@ -46,7 +46,7 @@ function SingleComment(props) {
         <div>
            <div className="card">
   <div className="card-body">
-    <h5 className="card-title">{user.name}</h5>
+    <h5 className="card-title">mercadoernesto</h5>
     <p className="card-text">{props.comment.content}</p>
     {actions}
   </div>

@@ -31,23 +31,34 @@ const Post = ({ post, setCurrentId }) => {
       };
     
     return (
-      <div className="card">
-           
-          <div className="card-body">
-              <h5 className="card-title">
-                  {post.title}
-              </h5>
-              <p className="card-text">
-                  {post.message}
-              </p>
-              <p className="card-text">
-              {moment(post.createdAt).fromNow()}
-              </p>
-              <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}><Likes/> </Button>
-        <Button size="small" color="primary" onClick={() =>dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
-        <Button size="small" color="primary" onClick={() => comments()}><DeleteIcon fontSize="small" /> Comment</Button>
-          </div>
-      </div>
+      <div class="slicePost bg-white  mb-4 rounded shadow">
+              
+                 <div class="row p-3 h-100">
+                 <div class="col-1" id="votes">
+                     <i class="fas fa-chevron-up"></i>
+                   <div class="text-center">99</div>
+                    <i class="fas fa-chevron-down"></i>
+                 </div>
+                 <div class="col-11">
+                   <div class="d-flex flex-column h-100" id="ContentPost">
+                     <div class="d-flex align-items-center">
+                         <div class="sub me-1"></div>
+                        <div class="sub_title"> 
+                          r/Planets  {moment(post.createdAt).fromNow()}</div>
+                       </div>
+                     <div class="h5 fw-bolder">{post.title}</div>
+                     <div>{post.message}
+                      </div>
+                     <div class="flex-grow-1 d-flex align-items-center">
+                       <i class="far fa-comment fa-2x"></i>
+                       <div class="fw-bolder ms-1">99 Comments</div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               
+               
+             </div>
     );
 }
 export default Post;

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import SubCard from "./SubCard.js";
 import { v4 as uuidv4 } from 'uuid';
 
-const Searchbar = () => {
+const Homebar = () => {
   const [key, setKey] = useState("");
 
   const dispatch = useDispatch();
@@ -129,4 +129,4 @@ const Searchbar = () => {
   );
 };
 
-export default Searchbar;
+export default Homebar;

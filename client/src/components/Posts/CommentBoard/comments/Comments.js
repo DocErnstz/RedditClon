@@ -8,7 +8,7 @@ import ReplyComment from './ReplyComment';
 const { TextArea } = Input;
 
 function Comments(props) {
-    const user = JSON.parse(localStorage.getItem('profile')).result;
+    //const user = JSON.parse(localStorage.getItem('profile')).result;
     const posts = useSelector((state) => state.posts);
     const [Comment, setComment] = useState("");
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function Comments(props) {
         e.preventDefault();
         const postData = {
             content: Comment,
-            creator: user._id,
+            creator: "mercadoernesto",
             postId: props.postId
         }
        
@@ -32,11 +32,7 @@ function Comments(props) {
 
     return (
         <div>
-            <br />
-            <h5> Replies</h5>
-            <hr />
-            {/* Comment Lists  */}
-
+            
             {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
                     <React.Fragment key={uuidv4()}>
@@ -45,21 +41,6 @@ function Comments(props) {
                     </React.Fragment>
                 )
             ))}
-
-
-            {/* Root Comment Form */}
-            <form style={{ display: 'flex' }} onSubmit={onSubmit}>
-                1
-                <TextArea
-                    style={{ width: '100%', borderRadius: '5px' }}
-                    onChange={handleChange}
-                    value={Comment}
-                    placeholder="write some comments"
-                />
-                <br />
-                <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}><h5>Post</h5></Button>
-            </form>
-
         </div>
     )
 }
