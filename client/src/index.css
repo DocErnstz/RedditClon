@@ -2,7 +2,7 @@
 
 body {
   height: 100vh;
-  background-color: red;
+  background-color: rgb(167, 166, 166);
   font-family: "Mulish", sans-serif;
 }
 
@@ -31,7 +31,7 @@ input[type="text"] {
   width: 900px;
 }
 
-#votes > i {
+#votes > svg {
   font-size: 20px;
 }
 
