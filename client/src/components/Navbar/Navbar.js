@@ -122,12 +122,12 @@ const Navbar = () => {
 
              {isSignin ? (
              <form id="forms" className="d-flex flex-column justify-content-end" onSubmit={handleSubmit}>
-               <div className="form-floating mb-3">
-                 <label htmlFor="floatingInput">Username</label>
+               <div className="mb-3">
+                 <label htmlFor="floatingInput" id="username">username</label>
                  <input type="text" name="userName" className="form-control" id="floatingInput" placeholder="mercadoernesto" onChange={handleChange}/>
                 </div>
-              <div className="form-floating">
-                <label htmlFor="floatingPassword">Password</label>
+              <div>
+                <label htmlFor="floatingPassword" id="password">password</label>
                 <input type="password" name="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={handleChange}/>
               </div>
               <input type="submit" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill" value="SignIn" />
@@ -137,23 +137,23 @@ const Navbar = () => {
               </form>
               ) : (
               <form id="forms" className="d-flex flex-column justify-content-end" onSubmit={handleSubmit}>
-                <div className="form-floating mb-3">
-                <label htmlFor="floatingInput">Email address</label>
+                <div className="mb-3">
+                <label htmlFor="floatingInput" id="email">email</label>
               <input type="email" name="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={handleChange}/>
               
             </div>
-            <div className="form-floating mb-3">
-              <label htmlFor="floatingPassword">Username</label>
-              <input type="name" name="userName" className="form-control" id="floatingUsername" placeholder="Password" onChange={handleChange}/>
+            <div className="mb-3">
+              <label htmlFor="floatingPassword" id="username">username</label>
+              <input type="name" name="userName" className="form-control" id="floatingUsername" placeholder="username" onChange={handleChange}/>
               
             </div>
-            <div className="form-floating mb-3">
-              <label htmlFor="floatingPassword">Password</label>
+            <div className="mb-3">
+              <label htmlFor="floatingPassword" id="password">password</label>
               <input type="password" name="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={handleChange}/>
               
             </div>
-            <div className="form-floating">
-              <label htmlFor="floatingPassword">PasswordCheck</label>
+            <div>
+              <label htmlFor="floatingPassword" id="passwordCheck">passwordCheck</label>
               <input type="password" name="passwordCheck" className="form-control" id="floatingPasswordCheck" placeholder="PasswordCheck" onChange={handleChange}/>
               
             </div>
