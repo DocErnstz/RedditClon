@@ -54,7 +54,7 @@ const Board = ({ match }) => {
               
            </div>
            
-           {post[0] ?  <Comments CommentLists={CommentLists} postId={post[0]._id} postCreator={post[0].creator}refreshFunction={updateComment}/> : ""}
+           {post[0] ?  <Comments CommentLists={CommentLists} postId={post[0]._id} postCreator={post[0].creator} refreshFunction={updateComment}/> : ""}
         </div>  ) : ""}
              
              <div id="infoReddit" style={{flexBasis: "300px", height: "350px"}}>

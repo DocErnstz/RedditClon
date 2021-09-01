@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from "react-redux";
 import { AddComment } from "../../../../actions/posts.js";
-import { Button, Input } from 'antd';
-const { TextArea } = Input;
+
 function SingleComment(props) {
-    //const user = JSON.parse(localStorage.getItem('profile')).result;
+    const user = JSON.parse(localStorage.getItem('profile')).result;
     const [CommentValue, setCommentValue] = useState("")
     const [OpenReply, setOpenReply] = useState(false)
     const dispatch = useDispatch();
@@ -22,7 +21,7 @@ function SingleComment(props) {
         e.preventDefault();
         const postData = {
             content: CommentValue,
-            creator: "mercadoernesto",
+            creator: user.name,
             postId: props.postId,
             responseTo: props.comment._id,
         }
@@ -39,40 +38,34 @@ function SingleComment(props) {
         <span className="badge badge-pill badge-danger"onClick={openReply} key="comment-basic-reply-to">Reply to </span>
     ]
 
-
-   
-
+  
     return (
-        <div>
-           <div className="d-flex align-items-start mt-5" id="comment">
+        <div class="w-100 d-flex flex-column align-items-end">
+           <div className="d-flex w-100 align-items-start mt-1" id="comment">
              <div className="p-2">
              <i className="fa fa-user" aria-hidden="true"></i>
              </div>
              <div className="flex-grow-1 d-flex flex-column">
-               <div>Mercadoernesto</div>
-               <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia quaerat voluptatum corrupti eius totam ut aut hic vitae facere consequatur iusto quas quasi, optio deserunt odio, quod sint, eligendi harum!</div>
+               <div>{props.comment.creator}</div>
+               <div>{props.comment.content}</div>
               <div className="d-flex align-items-center justify-content-between" style={{width: "200px"}}>
                  <i className="fas fa-chevron-up fa-2x"></i>
                  <div>99</div>
                  <i className="fas fa-chevron-down fa-2x"></i>
                   <i className="far fa-comment fa-2x"></i>
-                  <div>Reply</div>
+                  <div onClick={openReply}>Reply</div>
                </div>          
               </div>
              
            </div>
 
             {OpenReply &&
-                <form style={{ display: 'flex' }} onSubmit={onSubmit}>
-                    <TextArea
-                        style={{ width: '100%', borderRadius: '5px' }}
-                        onChange={handleChange}
-                        value={CommentValue}
-                        placeholder="write some comments"
-                    />
-                    <br />
-                    <Button style={{ width: '20%', height: '8px'}} onClick={onSubmit}><h5>Post</h5></Button>
-                </form>
+                
+                <form className="d-inline-flex flex-column align-items-end my-3" style={{width: "95%"}} onSubmit={onSubmit}>
+                <textarea name="" id="" className="w-100 mb-3"  onChange={handleChange} style={{height: "150px"}} placeholder="Hello World"></textarea>
+                <input type="submit" value="Comment" className="btn bg-black border-0 text-white" style={{width: "100px", marginRight: "1px", marginTop: "-50px", zIndex: "99"}}/>
+           
+           </form>
             }
 
         </div>

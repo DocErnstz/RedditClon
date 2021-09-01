@@ -35,14 +35,14 @@ function Comments(props) {
         <div className="d-flex flex-column align-items-center">
             <form className="d-inline-flex flex-column align-items-end my-3" style={{width: "95%"}} onSubmit={onSubmit}>
                 <textarea name="" id="" className="w-100 mb-3"  onChange={handleChange} style={{height: "150px"}} placeholder="Hello World"></textarea>
-                <input type="submit" value="Comment" className="btn bg-black border-0 text-white m-0" style={{width: "100px"}}/>
+                <input type="submit" value="Comment" className="btn bg-black border-0 text-white" style={{width: "100px", marginRight: "1px", marginTop: "-50px", zIndex: "99"}}/>
            
            </form>
             {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
                     <React.Fragment key={uuidv4()}>
-                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} key={uuidv4()} />
-                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction} key={uuidv4()} />
+                        <SingleComment comment={comment} postId={props.postId} postCreator={props.postCreator} postContent={props.postContent} refreshFunction={props.refreshFunction} key={uuidv4()} />
+                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} postContent={props.postContent} postCreator={props.postCreator} parentCommentId={comment._id} refreshFunction={props.refreshFunction} key={uuidv4()} />
                     </React.Fragment>
                 )
             ))}

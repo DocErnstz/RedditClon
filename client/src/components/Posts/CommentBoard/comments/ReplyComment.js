@@ -24,9 +24,9 @@ function ReplyComment(props) {
         props.CommentLists.map((comment, index) => (
             <React.Fragment key={uuidv4()}>
                 {comment.responseTo === parentCommentId &&
-                    <div style={{ width: '80%', marginLeft: '40px', marginTop: "40px" }}>
-                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} key={uuidv4()}/>
-                        <ReplyComment CommentLists={props.CommentLists} parentCommentId={comment._id} postId={props.postId} key={uuidv4()}/>
+                    <div style={{ width: '95%', marginLeft: '40px', marginTop: "40px" }}>
+                        <SingleComment comment={comment} postId={props.postId} postCreator={props.postCreator} postContent={props.postContent} refreshFunction={props.refreshFunction} key={uuidv4()}/>
+                        <ReplyComment CommentLists={props.CommentLists} parentCommentId={comment._id} postId={props.postId} postCreator={props.postCreator} postContent={props.postContent} key={uuidv4()}/>
                     </div>
                 }
             </React.Fragment>
@@ -38,7 +38,7 @@ function ReplyComment(props) {
 
 
     return (
-        <div>
+        <div class="w-100">
 
            
 
