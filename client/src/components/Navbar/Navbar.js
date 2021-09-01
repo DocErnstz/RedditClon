@@ -5,14 +5,12 @@ import { GoogleLogin } from 'react-google-login';
 import { signin, signup } from '../../actions/auth';
 
 
-const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
+const initialState = { userName: '', email: '', password: '', passwordCheck: '' };
 
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState(initialState);
-  const handleShowPassword = () => setShowPassword(!showPassword);
   const [isSignin, setIsSignin] = useState(true);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -39,7 +37,14 @@ const Navbar = () => {
       setIsSignin(false);
     }
   }
- 
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(form);
+    };
+
   
   return (
     <div>
@@ -104,41 +109,45 @@ const Navbar = () => {
                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
          <div className="d-flex h-100">
-           <div id="forms" className="d-flex flex-column justify-content-end mb-5">
+
              {isSignin ? (
-             <><div className="form-floating mb-3">
+             <form id="forms" className="d-flex flex-column justify-content-end mb-5" onSubmit={handleSubmit}>
+               <div className="form-floating mb-3">
+                 <label htmlFor="floatingInput">Username</label>
+                 <input type="text" name="userName" className="form-control" id="floatingInput" placeholder="mercadoernesto" onChange={handleChange}/>
+                </div>
+              <div className="form-floating">
+                <label htmlFor="floatingPassword">Password</label>
+                <input type="password" name="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={handleChange}/>
+              </div>
+              <input type="submit" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill" value="SignIn" />
+              </form>
+              ) : (
+              <form id="forms" className="d-flex flex-column justify-content-end mb-5" onSubmit={handleSubmit}>
+                <div className="form-floating mb-3">
                 <label htmlFor="floatingInput">Email address</label>
-              <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
-              
-            </div>
-            <div className="form-floating">
-              <label htmlFor="floatingPassword">Password</label>
-              <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
-              
-            </div>
-            <a href="" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill">SignIn</a> </>) : ( <><div className="form-floating mb-3">
-                <label htmlFor="floatingInput">Email address</label>
-              <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+              <input type="email" name="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={handleChange}/>
               
             </div>
             <div className="form-floating mb-3">
               <label htmlFor="floatingPassword">Username</label>
-              <input type="name" className="form-control" id="floatingUsername" placeholder="Password"/>
+              <input type="name" name="userName" className="form-control" id="floatingUsername" placeholder="Password" onChange={handleChange}/>
               
             </div>
             <div className="form-floating mb-3">
               <label htmlFor="floatingPassword">Password</label>
-              <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
+              <input type="password" name="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={handleChange}/>
               
             </div>
             <div className="form-floating">
               <label htmlFor="floatingPassword">PasswordCheck</label>
-              <input type="password" className="form-control" id="floatingPasswordCheck" placeholder="PasswordCheck"/>
+              <input type="password" name="passwordCheck" className="form-control" id="floatingPasswordCheck" placeholder="PasswordCheck" onChange={handleChange}/>
               
             </div>
-            <a href="" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill">SignUp</a> </>)}
-              
-           </div>
+            <input type="submit" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill" value="SignUp" />
+              </form>
+              )}
+
          </div>
       </div>
       
