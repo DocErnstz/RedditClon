@@ -42,7 +42,12 @@ const Navbar = () => {
   }
    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(form);
+      if (isSignin) {
+         dispatch(signin(form, history));
+      } else {
+        const newForm = {email: form.email, userName: form.userName, password: form.password};
+        dispatch(signup(newForm, history));
+      }
     };
    
   const switchMode = (e) => {
@@ -87,18 +92,22 @@ const Navbar = () => {
           </form>
           
           <div className="d-flex">
-           <div className="d-flex align-items-center p-2"><a href="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+           <div className="d-flex align-items-center p-2">
+             <div className="d-flex align-items-center p-2"><a href="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
              <i className="far fa-user fa-2x"></i>
              </a></div>
-           <div className="d-flex flex-column">
-             <div>Mercadoernesto</div>
+             {user ? (<div className="d-flex flex-column">
+             <div>{user.result.name}</div>
              <div>Karma 999</div>
-           </div>
+           </div>) : (<div></div>)}
+ 
+             </div>
+            
           </div>
         </div>
       </div>
-      <div className="collapse position-fixed" style={{width: "220px", marginTop: "140px", marginLeft: "84%"}} id="collapseExample">
-  <div className="card card-body">
+      <div className="collapse position-fixed" style={{width: "220px", right: "0px", top: "80px"}} id="collapseExample">
+  <div className="card card-body mt-0">
     <button className="btn block border-0 w-100 btn-primary" id="signup" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={onClick}>SignUp</button>
     <button className="btn block border-0 w-100 border-primary mt-2"  id="signin" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={onClick}>Login</button>
   </div>
@@ -123,8 +132,8 @@ const Navbar = () => {
              {isSignin ? (
              <form id="forms" className="d-flex flex-column justify-content-end" onSubmit={handleSubmit}>
                <div className="mb-3">
-                 <label htmlFor="floatingInput" id="username">username</label>
-                 <input type="text" name="userName" className="form-control" id="floatingInput" placeholder="mercadoernesto" onChange={handleChange}/>
+                 <label htmlFor="floatingInput" id="email">email</label>
+                 <input type="text" name="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={handleChange}/>
                 </div>
               <div>
                 <label htmlFor="floatingPassword" id="password">password</label>

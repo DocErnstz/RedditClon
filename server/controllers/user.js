@@ -26,7 +26,8 @@ export const signin = async (req, res) => {
 };
 // create user if doesnt exist already and returns user model data with token
 export const signup = async (req, res) => {
-  const { email, password, firstName, lastName } = req.body;
+  const { email, password, userName } = req.body;
+ 
 
   try {
     //find user if exist
@@ -36,7 +37,7 @@ export const signup = async (req, res) => {
     
     const hashedPassword = await bcrypt.hash(password, 12);
     //create user
-    const result = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
+    const result = await UserModal.create({ email, password: hashedPassword, name: `${userName}` });
 
     const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "30h" } );
 

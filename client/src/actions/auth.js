@@ -6,7 +6,9 @@ export const signin = (formData, router) => async (dispatch) => {
     
     dispatch({ type: "AUTH", data });
 
-    router.push('/');
+    console.log(data);
+    window.location.reload();
+    
   } catch (error) {
     if (error.response){
       console.log(error.response);
@@ -28,10 +30,10 @@ export const signup = (formData, router) => async (dispatch) => {
   try {
     //get user model data with token
     const { data } = await api.signUp(formData);
-    console.log(data);
+   
     dispatch({ type: "AUTH", data });
-    //asdsadsa
-    router.push('/');
+    console.log(data);
+    window.location.reload();
   } catch (error) {
     if (error.response){
       console.log(error.response);

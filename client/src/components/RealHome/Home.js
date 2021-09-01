@@ -9,11 +9,7 @@ const Homebar = () => {
   const [key, setKey] = useState("");
 
   const dispatch = useDispatch();
-   useEffect(() => {
-    dispatch(getSubs());
-  });
-  const subs = useSelector((state) => state.subs);
-  const filter_subs = subs.filter((sub) => sub.title.includes(key));
+   
   const prefix = "r/";
   const space = "/";
   return (
