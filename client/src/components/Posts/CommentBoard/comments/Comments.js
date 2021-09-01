@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AddComment, getComment } from "../../../../actions/posts.js";
 import SingleComment from './SingleComment';
 import ReplyComment from './ReplyComment';
-const { TextArea } = Input;
+
 
 function Comments(props) {
     //const user = JSON.parse(localStorage.getItem('profile')).result;
@@ -21,9 +21,10 @@ function Comments(props) {
         e.preventDefault();
         const postData = {
             content: Comment,
-            creator: "mercadoernesto",
+            creator: props.postCreator,
             postId: props.postId
         }
+        console.log(postData);
        
         const comment = dispatch(AddComment(props.postId, postData));
         comment.then((comments) => props.refreshFunction(comments[0]));
@@ -31,8 +32,12 @@ function Comments(props) {
     }
 
     return (
-        <div>
-            
+        <div className="d-flex flex-column align-items-center">
+            <form className="d-inline-flex flex-column align-items-end my-3" style={{width: "95%"}} onSubmit={onSubmit}>
+                <textarea name="" id="" className="w-100 mb-3"  onChange={handleChange} style={{height: "150px"}} placeholder="Hello World"></textarea>
+                <input type="submit" value="Comment" className="btn bg-black border-0 text-white m-0" style={{width: "100px"}}/>
+           
+           </form>
             {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
                     <React.Fragment key={uuidv4()}>

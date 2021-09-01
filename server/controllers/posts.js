@@ -87,7 +87,8 @@ export const likePost = async (req, res) => {
 }
 
 export const AddComment = async (req, res) => {
-    const { id } = req.params;
+    try {
+         const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     PostMessage.findOne({ _id: id })
@@ -99,10 +100,13 @@ export const AddComment = async (req, res) => {
         postId: req.body.postId
       }
 
-      post.comments.unshift(newComment)
+      post.comments.unshift(newComment);
 
       post.save().then(comment => res.json(comment))
-    })
+    }) } catch(error) {
+         res.status(404).json({message: error.message});
+    }
+   
     
 }
 

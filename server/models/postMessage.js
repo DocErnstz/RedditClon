@@ -18,7 +18,7 @@ const postSchema = mongoose.Schema({
     comments: [
         {
             creator: {
-                type: Schema.Types.ObjectId,
+                type: String,
             },
             postId: {
                 type: Schema.Types.ObjectId,

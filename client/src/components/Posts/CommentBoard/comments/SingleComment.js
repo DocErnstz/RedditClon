@@ -44,18 +44,18 @@ function SingleComment(props) {
 
     return (
         <div>
-           <div class="d-flex align-items-start mt-5" id="comment">
-             <div class="p-2">
-             <i class="fa fa-user" aria-hidden="true"></i>
+           <div className="d-flex align-items-start mt-5" id="comment">
+             <div className="p-2">
+             <i className="fa fa-user" aria-hidden="true"></i>
              </div>
-             <div class="flex-grow-1 d-flex flex-column">
+             <div className="flex-grow-1 d-flex flex-column">
                <div>Mercadoernesto</div>
                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia quaerat voluptatum corrupti eius totam ut aut hic vitae facere consequatur iusto quas quasi, optio deserunt odio, quod sint, eligendi harum!</div>
-              <div class="d-flex align-items-center justify-content-between" style={{width: "200px"}}>
-                 <i class="fas fa-chevron-up fa-2x"></i>
+              <div className="d-flex align-items-center justify-content-between" style={{width: "200px"}}>
+                 <i className="fas fa-chevron-up fa-2x"></i>
                  <div>99</div>
-                 <i class="fas fa-chevron-down fa-2x"></i>
-                  <i class="far fa-comment fa-2x"></i>
+                 <i className="fas fa-chevron-down fa-2x"></i>
+                  <i className="far fa-comment fa-2x"></i>
                   <div>Reply</div>
                </div>          
               </div>
