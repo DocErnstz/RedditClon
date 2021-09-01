@@ -8,7 +8,7 @@ import ReplyComment from './ReplyComment';
 
 
 function Comments(props) {
-    //const user = JSON.parse(localStorage.getItem('profile')).result;
+    const user = JSON.parse(localStorage.getItem('profile')).result;
     const posts = useSelector((state) => state.posts);
     const [Comment, setComment] = useState("");
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function Comments(props) {
         e.preventDefault();
         const postData = {
             content: Comment,
-            creator: props.postCreator,
+            creator: user.name,
             postId: props.postId
         }
         console.log(postData);

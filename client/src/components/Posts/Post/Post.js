@@ -47,7 +47,7 @@ const Post = ({ post, setCurrentId }) => {
                      <div className="d-flex align-items-center">
                          <div className="sub me-1"></div>
                         <div className="sub_title"> 
-                         <a style={{textDecoration: "none"}} href={"r/" + post.subRedditName + "/" + subPostId}>{"r/" + post.subRedditName}</a>
+                         <a style={{textDecoration: "none"}} href={"http://localhost:3000/r/" + post.subRedditName + "/" + subPostId}>{"r/" + post.subRedditName}</a>
                          { " " + moment(post.createdAt).fromNow() + " " + "by" + " " + post.creator}</div>
                        </div>
                      <div className="h5 fw-bolder">{post.title}</div>
@@ -56,7 +56,7 @@ const Post = ({ post, setCurrentId }) => {
                      <div className="flex-grow-1 d-flex align-items-center">
                        <i className="far fa-comment fa-2x"></i>
                        <div className="fw-bolder ms-1">
-                         99 <a href={"board" + "/" + post._id}>Comments</a></div>
+                         99 <a href={"http://localhost:3000/board" + "/" + post._id}>Comments</a></div>
                      </div>
                    </div>
                  </div>

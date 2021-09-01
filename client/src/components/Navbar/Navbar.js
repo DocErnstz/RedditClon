@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GoogleLogin } from 'react-google-login';
 import { signin, signup } from '../../actions/auth';
 import { getSubs } from '../../actions/subs';
-
+import { CircularProgress } from "@material-ui/core";
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = { userName: '', email: '', password: '', passwordCheck: '' };
 
@@ -13,6 +14,7 @@ const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [form, setForm] = useState(initialState);
   const [isSignin, setIsSignin] = useState(true);
+  const [isSearch, setIsSearch] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -28,6 +30,8 @@ const Navbar = () => {
     setUser(JSON.parse(localStorage.getItem("profile")));
     dispatch(getSubs());
   }, [location])
+  const subs = useSelector((state) => state.subs);
+  
   const onClick = (e) => {
     e.preventDefault();
     document.getElementById("Title").innerHTML = e.target.innerHTML;
@@ -60,11 +64,14 @@ const Navbar = () => {
         document.getElementById("Title").innerHTML = "SignUp";
       }
     };
-
+  const onInput = (e) => {
+    e.preventDefault();
+    setIsSearch(!isSearch);
+  }
   
   return (
-    <div>
-       <div id="NavbarContainer" className="sticky-top">
+    <div className="sticky-top">
+       <div id="NavbarContainer">
        <nav className="navbar shadow navbar-expand-lg navbar-light bg-light" style={{padding: ".5rem 0"}}>
       <div className="container-fluid"> 
         <a className="navbar-brand m-0 p-2" href="#"
@@ -72,22 +79,37 @@ const Navbar = () => {
         <div className="m-2 h3" id="brand">Reddit</div>
         
        
-        <div className="d-flex flex-grow-1" id="navbarSupportedContent">
+        <div className="d-flex w-100"  id="navbarSupportedContent">
           <form className="d-flex flex-grow-1 border">
             <div className="input-group flex-nowrap">
               <span className="input-group-text bg-white border-0" id="addon-wrapping"
                 ><i className="fas fa-search"></i></span>
-              <input
+                <div className="d-flex flex-column flex-grow-1">
+                  <input
                 type="search"
                 className="form-control border-0 h-100"
                 placeholder="Search Reddit"
                 aria-label="SearchReddit"
                 aria-describedby="addon-wrapping"
-            
+                onClick={onInput}
               />
-                 <div style={{position: "fixed", right: "0px"}}>1</div>
-         
-               
+              <ul class="w-100 p-0 d-flex flex-column" id="searchResults" style={{marginBottom:"-100%", height: "200px", overflowY: "auto"}}>
+                {
+                 (subs.length && isSearch) ?  (<div>{subs.map(sub => <li style={{listStyleType: "none"}} class="bg-white d-flex w-100 py-3 text-black" key={uuidv4()}>
+                  <div class="d-inline-flex align-items-center">
+                    <div className="sub m-2"></div>
+                   <div className="d-flex flex-column">
+                     <div><a href={"http://localhost:3000/r/" + sub.title + "/" + sub._id}>{sub.title}</a></div>
+                   </div>
+                  </div>
+                   
+                </li>)}</div>) : ""
+                }
+              
+              </ul>
+                </div>
+              
+                
             </div>
          
           </form>
