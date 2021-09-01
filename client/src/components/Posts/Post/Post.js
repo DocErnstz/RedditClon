@@ -1,12 +1,9 @@
-import React from "react";
-import { Button } from '@material-ui/core/';
+import React, {useEffect} from "react";
+import { getSubs } from "../../../actions/subs";
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
-
-import DeleteIcon from '@material-ui/icons/Delete';
 import moment from 'moment';
-import useStyles from './styles.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/posts';
 import { useHistory } from 'react-router-dom';
 
@@ -16,7 +13,13 @@ const Post = ({ post, setCurrentId }) => {
     const comments = () => {
         history.push(`/board/${post._id}`)
     }
+ 
     const user = JSON.parse(localStorage.getItem('profile'));
+    const subs = useSelector(state => state.subs);
+    const subPost = subs.filter((sub) => sub.title === post.subRedditName);
+    const subPostId = (subPost.length ? subPost[0]._id : "");
+   
+    
     const Likes = () => {
         if (post.likes.length > 0) {
           return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
@@ -31,27 +34,28 @@ const Post = ({ post, setCurrentId }) => {
       };
     
     return (
-      <div class="slicePost bg-white  mb-4 rounded shadow">
+      <div className="slicePost bg-white  mb-4 rounded shadow">
               
-                 <div class="row p-3 h-100">
-                 <div class="col-1" id="votes">
-                     <i class="fas fa-chevron-up"></i>
-                   <div class="text-center">99</div>
-                    <i class="fas fa-chevron-down"></i>
+                 <div className="row p-3 h-100">
+                 <div className="col-1" id="votes">
+                     <i className="fas fa-chevron-up"></i>
+                   <div className="text-center">99</div>
+                    <i className="fas fa-chevron-down"></i>
                  </div>
-                 <div class="col-11">
-                   <div class="d-flex flex-column h-100" id="ContentPost">
-                     <div class="d-flex align-items-center">
-                         <div class="sub me-1"></div>
-                        <div class="sub_title"> 
-                          r/Planets  {moment(post.createdAt).fromNow()}</div>
+                 <div className="col-11">
+                   <div className="d-flex flex-column h-100" id="ContentPost">
+                     <div className="d-flex align-items-center">
+                         <div className="sub me-1"></div>
+                        <div className="sub_title"> 
+                         <a style={{textDecoration: "none"}} href={"r/" + post.subRedditName + "/" + subPostId}>{"r/" + post.subRedditName}</a>
+                         { " " + moment(post.createdAt).fromNow() + " " + "by" + " " + post.creator}</div>
                        </div>
-                     <div class="h5 fw-bolder">{post.title}</div>
+                     <div className="h5 fw-bolder">{post.title}</div>
                      <div>{post.message}
                       </div>
-                     <div class="flex-grow-1 d-flex align-items-center">
-                       <i class="far fa-comment fa-2x"></i>
-                       <div class="fw-bolder ms-1">99 Comments</div>
+                     <div className="flex-grow-1 d-flex align-items-center">
+                       <i className="far fa-comment fa-2x"></i>
+                       <div className="fw-bolder ms-1">99 Comments</div>
                      </div>
                    </div>
                  </div>

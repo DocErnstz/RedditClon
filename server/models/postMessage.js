@@ -14,6 +14,7 @@ const postSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Subreddit',
       },
+    subRedditName: String,
     comments: [
         {
             creator: {

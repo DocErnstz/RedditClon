@@ -52,7 +52,17 @@ export const deletePost = async (req, res) => {
 
     res.json({ message: "Post deleted successfully." });
 }
+export const deleteAllPosts = async (req,res) => {
+    try{
 
+    await PostMessage.deleteMany({});
+
+    res.json({ message: "Posts deleted successfully." });
+
+    } catch(error) {
+        res.status(404).json({message: error.message});
+    }
+}
 
 export const likePost = async (req, res) => {
     const { id } = req.params;

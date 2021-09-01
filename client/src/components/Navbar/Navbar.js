@@ -3,6 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { GoogleLogin } from 'react-google-login';
 import { signin, signup } from '../../actions/auth';
+import { getSubs } from '../../actions/subs';
 
 
 const initialState = { userName: '', email: '', password: '', passwordCheck: '' };
@@ -25,7 +26,7 @@ const Navbar = () => {
  
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("profile")));
-    
+    dispatch(getSubs());
   }, [location])
   const onClick = (e) => {
     e.preventDefault();

@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { getSubs } from "../../actions/subs";
+import { getPosts } from "../../actions/posts";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+
 import SubCard from "./SubCard.js";
 import { v4 as uuidv4 } from 'uuid';
+import Posts from "../Posts/Posts";
 
 const Homebar = () => {
   const [key, setKey] = useState("");
 
   const dispatch = useDispatch();
+   const [currentId, setCurrentId] = useState(0);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
+
    
+   
+    
   const prefix = "r/";
   const space = "/";
   return (
@@ -31,73 +39,7 @@ const Homebar = () => {
                  </div>
                </div>
              </div>
-             <div className="slicePost bg-white  mb-4 rounded shadow">
-              
-                 <div className="row p-3 h-100">
-                 <div className="col-1" id="votes">
-                     <i className="fas fa-chevron-up"></i>
-                   <div className="text-center">99</div>
-                    <i className="fas fa-chevron-down"></i>
-                 </div>
-                 <div className="col-11">
-                   <div className="d-flex flex-column h-100" id="ContentPost">
-                     <div className="d-flex align-items-center">
-                         <div className="sub mr-1"></div>
-                        <div className="sub_title"> 
-                          r/Planets</div>
-                       </div>
-                     <div className="h5 fw-bolder">Seekin out new planets geek friends</div>
-                     <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                       Sequi similique officiis voluptatem, 
-                       facere illum numquam exercitationem corporis delectus, 
-                       temporibus alias odio molestias 
-                       praesentium aspernatur est laboriosam? At consectetur quam reprehenderit.
-                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit aliquid eos nulla. Exercitationem, veritatis modi voluptates quisquam accusantium quasi natus a odio officia? Perspiciatis natus quis eos amet reprehenderit laudantium.
-                      </div>
-                     <div className="flex-grow-1 d-flex align-items-center">
-                       <i className="far fa-comment fa-2x"></i>
-                       <div className="fw-bolder ml-1">99 Comments</div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               
-               
-             </div>
-              <div className="slicePost bg-white  mb-4 rounded shadow">
-              
-                 <div className="row p-3 h-100">
-                 <div className="col-1" id="votes">
-                     <i className="fas fa-chevron-up"></i>
-                     <div className="text-center">99</div>
-                      <i className="fas fa-chevron-down"></i>
-                 </div>
-                 <div className="col-11">
-                   <div className="d-flex flex-column h-100" id="ContentPost">
-                     <div className="d-flex align-items-center">
-                         <div className="sub mr-1"></div>
-                        <div className="sub_title"> 
-                          r/Planets</div>
-                       </div>
-                     <div className="h5 fw-bolder">Seekin out new planets geek friends</div>
-                     <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                       Sequi similique officiis voluptatem, 
-                       facere illum numquam exercitationem corporis delectus, 
-                       temporibus alias odio molestias 
-                       praesentium aspernatur est laboriosam? At consectetur quam reprehenderit.
-                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit aliquid eos nulla. Exercitationem, veritatis modi voluptates quisquam accusantium quasi natus a odio officia? Perspiciatis natus quis eos amet reprehenderit laudantium.
-                      </div>
-                     <div className="flex-grow-1 d-flex align-items-center">
-                       <i className="far fa-comment fa-2x"></i>
-                       <div className="fw-bolder ml-1">99 Comments</div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               
-               
-             </div>
-
+              <Posts setCurrentId={setCurrentId} isMain={true}/>
             
            </div>
           </div>

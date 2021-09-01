@@ -48,7 +48,7 @@ const Home = () => {
                  </div>
                </div>
              </div>
-             <Posts setCurrentId={setCurrentId} />
+             <Posts setCurrentId={setCurrentId} isMain={false}/>
            </div>
           </div>
          
