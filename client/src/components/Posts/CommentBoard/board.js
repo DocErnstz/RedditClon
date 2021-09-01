@@ -38,17 +38,24 @@ const Board = ({ match }) => {
                <div>99</div>
                 <i class="fas fa-chevron-down"></i>
              </div>
-             <div class="d-flex  flex-column">
-               <div>Posted by u/Mercadoernesto</div>
-               <div class="h4">Space Science Rocks</div>
-               <div >Lorem ipsum dolor sit amet consectetur adipisicing elit Rem a quidem quasi reprehenderit.</div>
+             <div class="d-flex  flex-column flex-grow-1">
+               <div className="d-flex flex-column">
+                 <div>Posted by {" " + "u/" + post[0].creator}</div>
+               <div class="h4">{post[0].title}</div>
+               <div >{post[0].message}</div>
                <div class="d-flex align-items-center">
                  <i class="far fa-comment fa-2x me-2"></i>
                 <div>99</div>
                </div>
+               </div>
+
+               
               </div>
               
            </div>
+           <form class="d-inline-flex flex-column align-items-end mx-auto my-3" style={{width: "90%"}}><textarea name="" id="" class="w-100 mb-3" style={{height: "150px"}}>Hello World </textarea>
+           <button className="btn bg-black border-0 text-white m-0" style={{width: "100px"}}>Comment</button>
+           </form>
            {post[0] ?  <Comments CommentLists={CommentLists} postId={post[0]._id} refreshFunction={updateComment}/> : ""}
         </div>  ) : ""}
              

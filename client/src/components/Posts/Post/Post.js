@@ -55,7 +55,8 @@ const Post = ({ post, setCurrentId }) => {
                       </div>
                      <div className="flex-grow-1 d-flex align-items-center">
                        <i className="far fa-comment fa-2x"></i>
-                       <div className="fw-bolder ms-1">99 Comments</div>
+                       <div className="fw-bolder ms-1">
+                         99 <a href={"board" + "/" + post._id}>Comments</a></div>
                      </div>
                    </div>
                  </div>
