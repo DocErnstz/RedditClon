@@ -44,6 +44,16 @@ const Navbar = () => {
       e.preventDefault();
       console.log(form);
     };
+   
+  const switchMode = (e) => {
+      e.preventDefault();
+      setIsSignin((prevIsSignin) => !prevIsSignin);
+      if(!isSignin){
+        document.getElementById("Title").innerHTML = "Login";
+      } else {
+        document.getElementById("Title").innerHTML = "SignUp";
+      }
+    };
 
   
   return (
@@ -111,7 +121,7 @@ const Navbar = () => {
          <div className="d-flex h-100">
 
              {isSignin ? (
-             <form id="forms" className="d-flex flex-column justify-content-end mb-5" onSubmit={handleSubmit}>
+             <form id="forms" className="d-flex flex-column justify-content-end" onSubmit={handleSubmit}>
                <div className="form-floating mb-3">
                  <label htmlFor="floatingInput">Username</label>
                  <input type="text" name="userName" className="form-control" id="floatingInput" placeholder="mercadoernesto" onChange={handleChange}/>
@@ -121,9 +131,12 @@ const Navbar = () => {
                 <input type="password" name="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={handleChange}/>
               </div>
               <input type="submit" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill" value="SignIn" />
+              <div className="d-inline-flex justify-content-end">
+                 <a href="" style={{textDecoration: "none"}} onClick={switchMode}>SignUp</a>
+              </div>
               </form>
               ) : (
-              <form id="forms" className="d-flex flex-column justify-content-end mb-5" onSubmit={handleSubmit}>
+              <form id="forms" className="d-flex flex-column justify-content-end" onSubmit={handleSubmit}>
                 <div className="form-floating mb-3">
                 <label htmlFor="floatingInput">Email address</label>
               <input type="email" name="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={handleChange}/>
@@ -145,10 +158,14 @@ const Navbar = () => {
               
             </div>
             <input type="submit" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill" value="SignUp" />
+            <div className="d-inline-flex justify-content-end">
+              <a href="" style={{textDecoration: "none"}} onClick={switchMode}>SignIn</a>
+              </div>           
               </form>
               )}
-
+              
          </div>
+         
       </div>
       
       </div>
