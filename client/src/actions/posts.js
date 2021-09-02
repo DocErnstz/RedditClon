@@ -45,7 +45,7 @@ export const updatePost = (id, post) => async (dispatch) => {
     const user = JSON.parse(localStorage.getItem('profile'));
     try {
       const { data } = await api.likePost(id, user?.token);
-      console.log(data);
+     
       dispatch({ type: "LIKE", payload: data });
     } catch (error) {
       console.log(error.message);
@@ -55,6 +55,26 @@ export const updatePost = (id, post) => async (dispatch) => {
     const user = JSON.parse(localStorage.getItem('profile'));
     try {
       const { data } = await api.dislikePost(id, user?.token);
+      console.log(data);
+      dispatch({ type: "LIKE", payload: data });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  export const likeComment = (id, commentId) => async (dispatch) => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+    try {
+      const { data } = await api.likeComment(id, commentId, user?.token);
+       console.log(data);
+      dispatch({ type: "LIKE", payload: data });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  export const dislikeComment = (id, commentId) => async (dispatch) => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+    try {
+      const { data } = await api.dislikeComment(id, commentId, user?.token);
       console.log(data);
       dispatch({ type: "LIKE", payload: data });
     } catch (error) {

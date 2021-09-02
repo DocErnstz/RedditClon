@@ -21,7 +21,7 @@ const Navbar = () => {
   const logout = () => {
     dispatch({ type: "LOGOUT" });
 
-    history.push("/auth");
+    window.location.reload();
 
     setUser(null);
   };
@@ -133,6 +133,8 @@ const Navbar = () => {
   <div className="card card-body mt-0">
     <button className="btn block border-0 w-100 btn-primary" id="signup" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={onClick}>SignUp</button>
     <button className="btn block border-0 w-100 border-primary mt-2"  id="signin" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={onClick}>Login</button>
+    {user ? <button className="btn block border-0 w-100 border-primary btn-primary mt-2"  id="logout" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={logout}>Logout</button> : ""}
+    
   </div>
 </div>
       

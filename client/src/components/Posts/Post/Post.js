@@ -22,7 +22,7 @@ const Post = ({ post, setCurrentId }) => {
     const upvotes = post.likes.filter((like) => !like.includes("-"));
     const downvotes = post.likes.filter((like) => like.includes("-"));
     const Tvotes = upvotes.length - downvotes.length;
-   
+    
     return (
       <div className="slicePost bg-white  mb-4 rounded shadow">
               
@@ -33,7 +33,7 @@ const Post = ({ post, setCurrentId }) => {
                    </button>
                     
                    <div className="text-center">{Tvotes} </div>
-                   <button class="border-0 bg-white p-0" style={{cursor: "pointer"}} onClick={() => dispatch(likePost(post._id))}>
+                   <button class="border-0 bg-white p-0" style={{cursor: "pointer"}} onClick={() => dispatch(dislikePost(post._id))}>
                       <i className="fas fa-chevron-down" ></i>
                    </button>
                    

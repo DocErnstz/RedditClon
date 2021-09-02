@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
+import { v4 as uuidv4 } from 'uuid';
 const Schema = mongoose.Schema;
+
 const postSchema = mongoose.Schema({
     title: String,
     message: String,
@@ -24,6 +26,7 @@ const postSchema = mongoose.Schema({
                 type: Schema.Types.ObjectId,
             },
 
+            likes: {type: [String], default: []},
             content: {
                 type: String
             },

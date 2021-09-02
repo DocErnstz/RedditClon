@@ -64,6 +64,7 @@ export const deleteAllPosts = async (req,res) => {
     }
 }
 
+
 export const likePost = async (req, res) => {
     const { id } = req.params;
     console.log(req.userId);
@@ -109,6 +110,8 @@ export const dislikePost = async (req, res) => {
 }
 
 
+
+
 export const AddComment = async (req, res) => {
     try {
          const { id } = req.params;
@@ -132,6 +135,54 @@ export const AddComment = async (req, res) => {
    
     
 }
+
+
+export const dislikeComment = async (req, res) => {
+    const { id, commentId } = req.params;
+   
+    if (!req.userId) {
+        return res.json({ message: "Unauthenticated" });
+      }
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    
+    const post = await PostMessage.findById(id);
+    const comment = post.comments.filter((comment) => comment._id == commentId);
+  
+     const index = comment[0].likes.filter((id) => id ===String("-1" + req.userId)).length;
+      if (index === 0) {
+      comment[0].likes.push("-1" + req.userId);
+    } else {
+      comment[0].likes = comment[0].likes.filter((id) => id !== String("-1" + req.userId));
+    }
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
+    res.status(200).json(updatedPost);
+  
+}
+
+export const likeComment = async (req, res) => {
+    const { id, commentId } = req.params;
+   
+    if (!req.userId) {
+        return res.json({ message: "Unauthenticated" });
+      }
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    
+    const post = await PostMessage.findById(id);
+    const comment = post.comments.filter((comment) => comment._id == commentId);
+  
+     const index = comment[0].likes.filter((id) => id ===String(req.userId)).length;
+      if (index === 0) {
+      comment[0].likes.push(req.userId);
+    } else {
+      comment[0].likes = comment[0].likes.filter((id) => id !== String(req.userId));
+    }
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
+    res.status(200).json(updatedPost);
+  
+}
+
 
 export const ClearComment = async (req, res) => {
     const { id } = req.params;

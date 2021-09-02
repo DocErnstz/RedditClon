@@ -26,6 +26,7 @@ export const signin = (formData, router) => async (dispatch) => {
   }
 };
 
+
 export const signup = (formData, router) => async (dispatch) => {
   try {
     //get user model data with token

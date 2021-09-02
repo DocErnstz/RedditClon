@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from "react-redux";
-import { AddComment } from "../../../../actions/posts.js";
+import { AddComment, likeComment, dislikeComment } from "../../../../actions/posts.js";
 
 function SingleComment(props) {
     const user = JSON.parse(localStorage.getItem('profile')).result;
@@ -37,6 +37,10 @@ function SingleComment(props) {
     const actions = [
         <span className="badge badge-pill badge-danger"onClick={openReply} key="comment-basic-reply-to">Reply to </span>
     ]
+    const upvotes = props.comment.likes.filter((like) => !like.includes("-"));
+    const downvotes = props.comment.likes.filter((like) => like.includes("-"));
+    const Tvotes = upvotes.length - downvotes.length;
+    
 
   
     return (
@@ -49,9 +53,13 @@ function SingleComment(props) {
                <div>{props.comment.creator}</div>
                <div>{props.comment.content}</div>
               <div className="d-flex align-items-center justify-content-between" style={{width: "200px"}}>
-                 <i className="fas fa-chevron-up fa-2x"></i>
-                 <div>99</div>
-                 <i className="fas fa-chevron-down fa-2x"></i>
+                  <button class="border-0 bg-white p-0" style={{cursor: "pointer"}} onClick={() => dispatch(likeComment(props.postId, props.comment._id))}>
+                       <i className="fas fa-chevron-up fa-2x"></i>
+                  </button>
+                 <div>{Tvotes}</div>
+                 <button class="border-0 bg-white p-0" style={{cursor: "pointer"}} onClick={() => dispatch(dislikeComment(props.postId, props.comment._id))}>
+                      <i className="fas fa-chevron-down fa-2x"></i>
+                 </button>
                   <i className="far fa-comment fa-2x"></i>
                   <div onClick={openReply}>Reply</div>
                </div>          
