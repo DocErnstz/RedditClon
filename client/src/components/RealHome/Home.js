@@ -15,11 +15,7 @@ const Homebar = () => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
 
-   
-   
-    
-  const prefix = "r/";
-  const space = "/";
+  
   return (
     <div className="container" id="Mainbar" style={{overflowX: "hidden"}}>
       

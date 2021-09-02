@@ -70,13 +70,13 @@ const Navbar = () => {
   }
   
   return (
-    <div className="sticky-top">
-       <div id="NavbarContainer">
+    <>
+       <div id="NavbarContainer" style={{position: "sticky", top: "0px", zIndex: "999"}} >
        <nav className="navbar shadow navbar-expand-lg navbar-light bg-light" style={{padding: ".5rem 0"}}>
       <div className="container-fluid"> 
         <a className="navbar-brand m-0 p-2" href="#"
           ><i className="fab fa-reddit-alien fa-2x"></i></a>
-        <div className="m-2 h3" id="brand">Reddit</div>
+        <div className="m-2 h3" id="brand"><a href="http://localhost:3000/" class="text-dark" style={{textDecoration: "none"}}>Reddit</a></div>
         
        
         <div className="d-flex w-100"  id="navbarSupportedContent">
@@ -99,7 +99,7 @@ const Navbar = () => {
                   <div class="d-inline-flex align-items-center">
                     <div className="sub m-2"></div>
                    <div className="d-flex flex-column">
-                     <div><a href={"http://localhost:3000/r/" + sub.title + "/" + sub._id}>{sub.title}</a></div>
+                     <div><a href={"http://localhost:3000/r/" + sub.title + "/" + sub._id} style={{textDecoration: "none"}}>{sub.title}</a></div>
                    </div>
                   </div>
                    
@@ -138,7 +138,7 @@ const Navbar = () => {
       
     </nav>
   </div>
-  <div className="modal fade" id="exampleModal" style={{overflow: "hidden"}} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal fade" id="exampleModal" style={{overflow: "hidden"}}   tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog mx-auto h-100 my-0 d-flex align-items-center" style={{maxWidth: "800px"}}>
     <div className="modal-content">
       <div className="d-flex">
@@ -205,7 +205,7 @@ const Navbar = () => {
     </div>
   </div>
 </div>
-    </div>
+    </>
    
   );
 };
