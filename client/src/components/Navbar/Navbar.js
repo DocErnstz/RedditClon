@@ -67,6 +67,12 @@ const Navbar = () => {
   const onInput = (e) => {
     e.preventDefault();
     setIsSearch(!isSearch);
+    if(!isSearch){
+      document.getElementById("searchResults").style.height= '200px';
+    } else {
+       document.getElementById("searchResults").style.height= '0px';
+    }
+    
   }
   
   return (
@@ -93,7 +99,7 @@ const Navbar = () => {
                 aria-describedby="addon-wrapping"
                 onClick={onInput}
               />
-              <ul class="w-100 p-0 d-flex flex-column" id="searchResults" style={{marginBottom:"-100%", height: "200px", overflowY: "auto"}}>
+              <ul class="w-100 p-0 d-flex flex-column" id="searchResults" style={{marginBottom:"-100%",  overflowY: "auto"}}>
                 {
                  (subs.length && isSearch) ?  (<div>{subs.map(sub => <li style={{listStyleType: "none"}} class="bg-white d-flex w-100 py-3 text-black" key={uuidv4()}>
                   <div class="d-inline-flex align-items-center">

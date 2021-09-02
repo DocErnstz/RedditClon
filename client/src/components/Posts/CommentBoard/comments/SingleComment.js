@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { AddComment, likeComment, dislikeComment } from "../../../../actions/posts.js";
 
 function SingleComment(props) {
-    const user = JSON.parse(localStorage.getItem('profile')).result;
+    const user = JSON.parse(localStorage.getItem('profile'));
     const [CommentValue, setCommentValue] = useState("")
     const [OpenReply, setOpenReply] = useState(false)
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function SingleComment(props) {
         e.preventDefault();
         const postData = {
             content: CommentValue,
-            creator: user.name,
+            creator: user.result.name,
             postId: props.postId,
             responseTo: props.comment._id,
         }
@@ -61,20 +61,17 @@ function SingleComment(props) {
                       <i className="fas fa-chevron-down fa-2x"></i>
                  </button>
                   <i className="far fa-comment fa-2x"></i>
-                  <div onClick={openReply}>Reply</div>
+                  {user ?  <div onClick={openReply}>Reply</div> : ""}
                </div>          
               </div>
              
            </div>
 
-            {OpenReply &&
-                
-                <form className="d-inline-flex flex-column align-items-end my-3" style={{width: "95%"}} onSubmit={onSubmit}>
+            {OpenReply ? (<form className="d-inline-flex flex-column align-items-end my-3" style={{width: "95%"}} onSubmit={onSubmit}>
                 <textarea name="" id="" className="w-100 mb-3"  onChange={handleChange} style={{height: "150px"}} placeholder="Hello World"></textarea>
                 <input type="submit" value="Comment" className="btn bg-black border-0 text-white" style={{width: "100px", marginRight: "1px", marginTop: "-50px", zIndex: "99"}}/>
            
-           </form>
-            }
+           </form>) : "" }
 
         </div>
     )

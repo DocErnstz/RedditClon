@@ -8,7 +8,7 @@ import ReplyComment from './ReplyComment';
 
 
 function Comments(props) {
-    const user = JSON.parse(localStorage.getItem('profile')).result;
+    const user = JSON.parse(localStorage.getItem('profile'));
     const posts = useSelector((state) => state.posts);
     const [Comment, setComment] = useState("");
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function Comments(props) {
         e.preventDefault();
         const postData = {
             content: Comment,
-            creator: user.name,
+            creator: user.result.name,
             postId: props.postId
         }
         console.log(postData);
@@ -33,11 +33,12 @@ function Comments(props) {
 
     return (
         <div className="d-flex flex-column align-items-center">
-            <form className="d-inline-flex flex-column align-items-end my-3" style={{width: "95%"}} onSubmit={onSubmit}>
+            {user ? ( <form className="d-inline-flex flex-column align-items-end my-3" style={{width: "95%"}} onSubmit={onSubmit}>
                 <textarea name="" id="" className="w-100 mb-3"  onChange={handleChange} style={{height: "150px"}} placeholder="Hello World"></textarea>
                 <input type="submit" value="Comment" className="btn bg-black border-0 text-white" style={{width: "100px", marginRight: "1px", marginTop: "-50px", zIndex: "99"}}/>
            
-           </form>
+           </form>) : ""}
+           
             {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
                     <React.Fragment key={uuidv4()}>
