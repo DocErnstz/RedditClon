@@ -52,7 +52,7 @@ const Post = ({ post, setCurrentId }) => {
                      <div className="flex-grow-1 d-flex align-items-center">
                        <i className="far fa-comment fa-2x"></i>
                        <div className="fw-bolder ms-1">
-                         99 <a href={"http://localhost:3000/board" + "/" + post._id} style={{textDecoration: "none"}}  class="text-dark">Comments</a></div>
+                         {post.comments.length} <a href={"http://localhost:3000/board" + "/" + post._id} style={{textDecoration: "none"}}  class="text-dark">Comments</a></div>
                      </div>
                    </div>
                  </div>

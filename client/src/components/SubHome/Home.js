@@ -8,6 +8,7 @@ import Form from "../Form/Form";
 const Home = () => {
   const dispatch = useDispatch();
   const [currentId, setCurrentId] = useState(0);
+  const queryString = String(window.location.href).split("/");
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
@@ -20,8 +21,8 @@ const Home = () => {
         <i class="fas fa-globe fa-4x"></i>
         <div class="d-inline-flex" style={{width: "calc(100% - 80px)", marginTop: "20px", paddingLeft: "10px"}}>
           <div style={{width: "calc(100% - 80px)"}}>
-            <h1 class="m-0 d-inline-block" style={{flex: "1", fontSize: "28px"}}>Discuss Aerospace education, news, events, use cases and resources.</h1>
-            <p class="m-0">r/Planets</p>
+            <h1 class="m-0 d-inline-block" style={{flex: "1", fontSize: "28px"}}>Discuss {queryString[4]} education, news, events, use cases and resources.</h1>
+            <p class="m-0">r/{queryString[4]}</p>
           </div>
           <a href="" class="btn m-0 border-0 btn-primary rounded-pill" style={{height: "40px", width: "80px"}}>Join</a>
         </div>
