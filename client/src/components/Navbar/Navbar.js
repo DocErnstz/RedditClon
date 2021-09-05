@@ -24,6 +24,16 @@ const Navbar = () => {
     window.location.reload();
     setUser(null);
   };
+   const redirect = (e, sub) => {
+       if(e.target.name == "main"){
+         history.push(`/`);
+       } 
+    }
+  const toSub = (sub) => {
+    history.push(`/r/${sub.title }/${sub._id}`);
+    setIsSearch(false);
+    document.getElementById("searchResults").style.height= '0px';
+  }
  
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("profile")));
@@ -83,7 +93,7 @@ const Navbar = () => {
       <div className="container-fluid"> 
         <a className="navbar-brand m-0 p-2" href="#"
           ><i className="fab fa-reddit-alien fa-2x"></i></a>
-        <div className="m-2 h3" id="brand"><a href="http://localhost:3000/" class="text-dark" style={{textDecoration: "none"}}>Reddit</a></div>
+        <div className="m-2 h3" id="brand"><a name="main" onClick={redirect} class="text-dark" style={{textDecoration: "none"}}>Reddit</a></div>
         
        
         <div className="d-flex w-100"  id="navbarSupportedContent">
@@ -106,7 +116,7 @@ const Navbar = () => {
                   <div class="d-inline-flex align-items-center">
                     <div className="sub m-2"></div>
                    <div className="d-flex flex-column">
-                     <div><a href={"http://localhost:3000/r/" + sub.title + "/" + sub._id} style={{textDecoration: "none"}}>{sub.title}</a></div>
+                     <div><a name="sub" onClick={() => toSub(sub)} style={{textDecoration: "none"}}>{sub.title}</a></div>
                    </div>
                   </div>
                    
