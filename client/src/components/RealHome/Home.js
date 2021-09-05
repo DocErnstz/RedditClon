@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getPosts } from "../../actions/posts";
 import { useDispatch } from "react-redux";
+import Form from "../Form/Form";
 
 import SubCard from "./SubCard.js";
 import { v4 as uuidv4 } from 'uuid';
@@ -8,6 +9,10 @@ import Posts from "../Posts/Posts";
 
 const Homebar = () => {
   const [key, setKey] = useState("");
+  const createPost = (e) => {
+    e.preventDefault();
+    console.log("asdas");
+  }
 
   const dispatch = useDispatch();
    const [currentId, setCurrentId] = useState(0);
@@ -18,8 +23,7 @@ const Homebar = () => {
   
   return (
     <div className="container" id="Mainbar" style={{overflowX: "hidden"}}>
-      
-                    
+      <Form />      
       <div className="row">
         <div id="homePosts" className="col-12 col-md-7">
            <div className="d-flex flex-column h-100">
@@ -50,8 +54,7 @@ const Homebar = () => {
                  <p>
                    Your personal Reddit frontpage. Come here to check in with your favorite communities.
                  </p>
-                 <div className="btn btn-outline bg-primary text-white block w-100 border-0">Create Post</div>
-                 <div className="btn btn-outline border-primary bg-white text-primary mt-2 block w-100 ">Create Community</div>
+                 <button className="btn block border-0 w-100 border-primary btn-primary mt-2"  id="createPost" data-bs-toggle="modal" data-bs-target="#createPostModal">Create Post</button>
                  </div>
             
              
