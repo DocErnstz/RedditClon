@@ -8,7 +8,7 @@ import { CircularProgress } from "@material-ui/core";
 import { v4 as uuidv4 } from 'uuid';
 
 
-const initialState = { userName: '', email: '', password: '', passwordCheck: '' };
+const initialState = { userName: '', email: '', password: '' };
 
 
 const Navbar = () => {

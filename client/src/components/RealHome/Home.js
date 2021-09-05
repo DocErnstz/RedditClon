@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Posts from "../Posts/Posts";
 
 const Homebar = () => {
+  const user = JSON.parse(localStorage.getItem("profile"));
   const [key, setKey] = useState("");
   const createPost = (e) => {
     e.preventDefault();
@@ -54,12 +55,9 @@ const Homebar = () => {
                  <p>
                    Your personal Reddit frontpage. Come here to check in with your favorite communities.
                  </p>
-                 <button className="btn block border-0 w-100 border-primary btn-primary mt-2"  id="createPost" data-bs-toggle="modal" data-bs-target="#createPostModal">Create Post</button>
+                 {user ? <button className="btn block border-0 w-100 border-primary btn-primary mt-2"  id="createPost" data-bs-toggle="modal" data-bs-target="#createPostModal">Create Post</button> : "" }
                  </div>
-            
-             
              </div>
-             
            </div>
          </div>
       </div>
