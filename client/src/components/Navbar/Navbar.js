@@ -7,6 +7,7 @@ import { getSubs } from '../../actions/subs';
 import { CircularProgress } from "@material-ui/core";
 import { v4 as uuidv4 } from 'uuid';
 
+
 const initialState = { userName: '', email: '', password: '', passwordCheck: '' };
 
 
@@ -20,9 +21,7 @@ const Navbar = () => {
   const location = useLocation();
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-
     window.location.reload();
-
     setUser(null);
   };
  
@@ -31,11 +30,11 @@ const Navbar = () => {
     dispatch(getSubs());
   }, [location])
   const subs = useSelector((state) => state.subs);
-  
+
   const onClick = (e) => {
     e.preventDefault();
     document.getElementById("Title").innerHTML = e.target.innerHTML;
-   
+    
     if(e.target.innerHTML == "Login"){
       setIsSignin(true);
     } else {
@@ -45,10 +44,12 @@ const Navbar = () => {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
-   const handleSubmit = (e) => {
+   const onSubmit = (e) => {
       e.preventDefault();
+      console.log("a");
       if (isSignin) {
          dispatch(signin(form, history));
+  
       } else {
         const newForm = {email: form.email, userName: form.userName, password: form.password};
         dispatch(signup(newForm, history));
@@ -161,41 +162,40 @@ const Navbar = () => {
          <div className="d-flex h-100">
 
              {isSignin ? (
-             <form id="forms" className="d-flex flex-column justify-content-end" onSubmit={handleSubmit}>
+               
+             <form id="forms" className="d-flex flex-column justify-content-end" onSubmit={onSubmit}>
                <div className="mb-3">
                  <label htmlFor="floatingInput" id="email">email</label>
-                 <input type="text" name="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={handleChange}/>
+                 <input type="text" name="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={handleChange} required/>
                 </div>
               <div>
                 <label htmlFor="floatingPassword" id="password">password</label>
-                <input type="password" name="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={handleChange}/>
+                <input type="password" name="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={handleChange} required />
               </div>
-              <input type="submit" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill" value="SignIn" />
+              <input type="submit" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill" value="SignIn" /> 
               <div className="d-inline-flex justify-content-end">
                  <a href="" style={{textDecoration: "none"}} onClick={switchMode}>SignUp</a>
               </div>
               </form>
               ) : (
-              <form id="forms" className="d-flex flex-column justify-content-end" onSubmit={handleSubmit}>
+              <form id="forms" className="d-flex flex-column justify-content-end" onSubmit={onSubmit}>
                 <div className="mb-3">
                 <label htmlFor="floatingInput" id="email">email</label>
-              <input type="email" name="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={handleChange}/>
+              <input type="email" name="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={handleChange } required/>
               
             </div>
             <div className="mb-3">
               <label htmlFor="floatingPassword" id="username">username</label>
-              <input type="name" name="userName" className="form-control" id="floatingUsername" placeholder="username" onChange={handleChange}/>
+              <input type="name" name="userName" className="form-control" id="floatingUsername" placeholder="username" onChange={handleChange} required/>
               
             </div>
             <div className="mb-3">
               <label htmlFor="floatingPassword" id="password">password</label>
-              <input type="password" name="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={handleChange}/>
+              <input type="password" name="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={handleChange} required/>
               
             </div>
-            <div>
-              <label htmlFor="floatingPassword" id="passwordCheck">passwordCheck</label>
-              <input type="password" name="passwordCheck" className="form-control" id="floatingPasswordCheck" placeholder="PasswordCheck" onChange={handleChange}/>
-              
+                      <div>
+
             </div>
             <input type="submit" className="btn block w-100 border-0 btn-primary mt-2 rounded-pill" value="SignUp" />
             <div className="d-inline-flex justify-content-end">

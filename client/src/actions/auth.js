@@ -1,5 +1,8 @@
 
 import * as api from '../api/index.js';
+import { toast } from 'react-toastify';
+
+
 export const signin = (formData, router) => async (dispatch) => {
   try {
     const { data } = await api.signIn(formData);
@@ -10,19 +13,10 @@ export const signin = (formData, router) => async (dispatch) => {
     window.location.reload();
     
   } catch (error) {
-    if (error.response){
-      console.log(error.response);
-      //do something
-      
-      }else if(error.request){
-      console.log(error.request);
-      //do something else
-      
-      }else if(error.message){
-      console.log(error.message);
-      //do something other than the other two
-      
-      }
+    console.log(error.response?.data.message);
+      toast(error.response?.data.message, {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
   }
 };
 
@@ -36,18 +30,9 @@ export const signup = (formData, router) => async (dispatch) => {
     console.log(data);
     window.location.reload();
   } catch (error) {
-    if (error.response){
-      console.log(error.response);
-      //do something
-      
-      }else if(error.request){
-      console.log(error.request);
-      //do something else
-      
-      }else if(error.message){
-      console.log(error.message);
-      //do something other than the other two
-      
-      }
+    console.log(error.response?.data.message);
+      toast(error.response?.data.message, {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
   }
 };
