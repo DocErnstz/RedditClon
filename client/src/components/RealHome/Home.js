@@ -10,16 +10,12 @@ import Posts from "../Posts/Posts";
 const Homebar = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [key, setKey] = useState("");
-  const createPost = (e) => {
-    e.preventDefault();
-    console.log("asdas");
-  }
 
   const dispatch = useDispatch();
-   const [currentId, setCurrentId] = useState(0);
+   
   useEffect(() => {
     dispatch(getPosts());
-  }, [currentId, dispatch]);
+  }, [dispatch]);
 
   
   return (
@@ -40,7 +36,7 @@ const Homebar = () => {
                  </div>
                </div>
              </div>
-              <Posts setCurrentId={setCurrentId} isMain={true}/>
+              <Posts isMain={true}/>
             
            </div>
           </div>

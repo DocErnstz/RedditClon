@@ -4,7 +4,7 @@ export const getPosts = () => async (dispatch) => {
     try {
         const { data } = await api.fetchPosts();
         data.map((post) => (dispatch({ type: "DELETE", payload: post._id})))
-        data.map((post) => (dispatch({ type: "CREATE", payload: post})))
+        data.map((post) => (dispatch({ type: "CREATE", payload: post})));
         //dispatch({ type: "FETCH_ALL", payload: data});
     } catch(error){
         console.log(error.message);

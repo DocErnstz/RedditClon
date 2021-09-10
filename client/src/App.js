@@ -14,10 +14,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
     const dispatch = useDispatch();
-    const [currentId] = useState(0);
     useEffect(() => {
         dispatch(getPosts());
-    }, [currentId, dispatch]);
+    }, [dispatch]);
     return (
         <BrowserRouter>
         <ToastContainer />

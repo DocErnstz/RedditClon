@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deletePost, likePost, dislikePost } from '../../../actions/posts';
 import { useHistory } from 'react-router-dom';
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post }) => {
     const dispatch = useDispatch();
     const history = useHistory();
    
@@ -31,12 +31,12 @@ const Post = ({ post, setCurrentId }) => {
               
                  <div className="row p-3 h-100">
                  <div className="col-1" id="votes">
-                   <button class="border-0 bg-white p-0" style={{cursor: "pointer"}} onClick={() => dispatch(likePost(post._id))}>
+                   <button className="border-0 bg-white p-0" style={{cursor: "pointer"}} data-testid="upvote" onClick={() => dispatch(likePost(post._id))}>
                       <i className="fas fa-chevron-up"></i>
                    </button>
                     
-                   <div className="text-center">{Tvotes} </div>
-                   <button class="border-0 bg-white p-0" style={{cursor: "pointer"}} onClick={() => dispatch(dislikePost(post._id))}>
+                   <div className="text-center" data-testid="Tvotes">{Tvotes}</div>
+                   <button className="border-0 bg-white p-0" style={{cursor: "pointer"}} data-testid="downvote" onClick={() => dispatch(dislikePost(post._id))}>
                       <i className="fas fa-chevron-down" ></i>
                    </button>
                    
@@ -46,7 +46,7 @@ const Post = ({ post, setCurrentId }) => {
                      <div className="d-flex align-items-center">
                          <div className="sub me-1"></div>
                         <div className="sub_title"> 
-                         <a style={{textDecoration: "none"}}  name="comment" onClick={redirect} class="text-dark" >{"r/" + post.subRedditName}</a>
+                         <a style={{textDecoration: "none"}}  name="sub" onClick={redirect} className="text-dark" >{"r/" + post.subRedditName}</a>
                          { " " + moment(post.createdAt).fromNow() + " " + "by" + " " + post.creator}</div>
                        </div>
                      <div className="h5 fw-bolder">{post.title}</div>
@@ -55,7 +55,7 @@ const Post = ({ post, setCurrentId }) => {
                      <div className="flex-grow-1 d-flex align-items-center">
                        <i className="far fa-comment fa-2x"></i>
                        <div className="fw-bolder ms-1">
-                         {post.comments.length} <a  style={{textDecoration: "none"}} name="sub"  onClick={redirect} class="text-dark">Comments</a></div>
+                         {post.comments.length} <a  style={{textDecoration: "none"}} name="comment"  onClick={redirect} className="text-dark">{(Tvotes > 0) ? "" : "Comments"}</a></div>
                      </div>
                    </div>
                  </div>

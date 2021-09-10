@@ -8,7 +8,7 @@ router.post('/', auth, createPost);
 router.patch('/:id', updatePost);
 router.delete('/:id', deletePost);
 router.get("/deletePosts", deleteAllPosts);
-router.patch('/:id/likePost', auth, likePost);
+router.patch('/:id/likePost', likePost);
 router.patch('/:id/dislikePost', auth, dislikePost);
 router.put("/:id/AddComment", AddComment);
 router.patch("/:id/:commentId/likeComment", auth, likeComment);
