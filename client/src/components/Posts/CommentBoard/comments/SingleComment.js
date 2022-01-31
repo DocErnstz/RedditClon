@@ -18,6 +18,7 @@ function SingleComment(props) {
 
 
     const onSubmit = (e) => {
+        console.log(e);
         e.preventDefault();
         const postData = {
             content: CommentValue,
@@ -26,10 +27,10 @@ function SingleComment(props) {
             responseTo: props.comment._id,
         }
        
-        dispatch(AddComment(props.postId, postData));
+      
         
-        const comment = dispatch(AddComment(props.postId, postData));
-        comment.then((comments) => props.refreshFunction(comments[0]));
+        const comments = dispatch(AddComment(props.postId, postData));
+        comments.then((comment) => props.refreshFunction(comments[0]));
         
     }
 
@@ -67,7 +68,7 @@ function SingleComment(props) {
              
            </div>
 
-            {OpenReply ? (<form className="d-inline-flex flex-column align-items-end my-3" style={{width: "95%"}} onSubmit={onSubmit}>
+            {OpenReply ? (<form className="d-inline-flex flex-column align-items-end my-3" style={{width: "95%"}} onSubmit={(e) => onSubmit(e)}>
                 <textarea name="" id="" className="w-100 mb-3"  onChange={handleChange} style={{height: "150px"}} placeholder="Hello World"></textarea>
                 <input type="submit" value="Comment" className="btn bg-black border-0 text-white" style={{width: "100px", marginRight: "1px", marginTop: "-50px", zIndex: "99"}}/>
            

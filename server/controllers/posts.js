@@ -74,15 +74,30 @@ export const likePost = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     
+  
+
     const post = await PostMessage.findById(id);
 
     const index = post.likes.findIndex((id) => id ===String(req.userId));
-
-    if (index === -1) {
-      post.likes.push(req.userId);
-    } else {
-      post.likes = post.likes.filter((id) => id !== String(req.userId));
+    const index2 = post.likes.findIndex((id) => id ===String("-1" + req.userId));
+    let newPostLikes = post.likes;
+    if (index == -1 && index2 == -1) {
+    
+     
+      newPostLikes.push(req.userId);
+      console.log(newPostLikes);
+    } else if (index2 > -1){
+      newPostLikes = newPostLikes.filter((like) => !(like == String("-1" + req.userId)));
+      newPostLikes.push(req.userId);
+      console.log(newPostLikes);
     }
+    else if(index > -1){
+      newPostLikes = newPostLikes.filter((like) => !(like == String(req.userId)));
+    }
+    
+    post.likes = newPostLikes
+   
+
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
     res.status(200).json(updatedPost);
 }
@@ -98,13 +113,24 @@ export const dislikePost = async (req, res) => {
     
     const post = await PostMessage.findById(id);
 
-    const index = post.likes.findIndex((id) => id ===String("-1" + req.userId));
-
-    if (index === -1) {
-      post.likes.push("-1" + req.userId);
-    } else {
-      post.likes = post.likes.filter((id) => id !== String("-1" + req.userId));
+    const index = post.likes.findIndex((id) => id ===String(req.userId));
+    const index2 = post.likes.findIndex((id) => id ===String("-1" + req.userId));
+    let newPostLikes = post.likes;
+    if (index == -1 && index2 == -1) {
+      newPostLikes.push("-1" + req.userId);
+      console.log(newPostLikes);
+    } else if (index > -1){
+      newPostLikes = newPostLikes.filter((like) => !(like == String(req.userId)));
+      newPostLikes.push(req.userId);
+      console.log(newPostLikes);
     }
+    else if(index2 > -1){
+      newPostLikes = newPostLikes.filter((like) => !(like == String("-1" + req.userId)));
+    }
+    
+    post.likes = newPostLikes
+   
+  
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
     res.status(200).json(updatedPost);
 }
@@ -115,10 +141,11 @@ export const dislikePost = async (req, res) => {
 export const AddComment = async (req, res) => {
     try {
          const { id } = req.params;
-
+   
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     PostMessage.findOne({ _id: id })
     .then(post => {
+     
       const newComment = {
         creator: req.body.creator,
         content: req.body.content,
@@ -147,14 +174,22 @@ export const dislikeComment = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     
     const post = await PostMessage.findById(id);
-    const comment = post.comments.filter((comment) => comment._id == commentId);
-  
-     const index = comment[0].likes.filter((id) => id ===String("-1" + req.userId)).length;
-      if (index === 0) {
-      comment[0].likes.push("-1" + req.userId);
-    } else {
-      comment[0].likes = comment[0].likes.filter((id) => id !== String("-1" + req.userId));
-    }
+    const comment = post.comments.filter((comment) => comment._id == commentId)[0];
+    
+    const index = comment.likes.findIndex((id) => id === String(req.userId));
+    const index2 = comment.likes.findIndex((id) => id === String("-1" + req.userId));
+    let newCommentLikes = comment.likes;
+  if(index == -1 && index2 == -1){
+    newCommentLikes.push("-1" + req.userId);
+  } else if(index > - 1){
+    newCommentLikes = newCommentLikes.filter((like) => !(like == String(req.userId)));
+    newCommentLikes.push(String(req.userId));
+  } else if (index2 > -1) {
+    newCommentLikes = newCommentLikes.filter((like) => !(like == String("-1" + req.userId)));
+
+  }
+  comment.likes = newCommentLikes;
+
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
     res.status(200).json(updatedPost);
   
@@ -170,14 +205,22 @@ export const likeComment = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     
     const post = await PostMessage.findById(id);
-    const comment = post.comments.filter((comment) => comment._id == commentId);
-  
-     const index = comment[0].likes.filter((id) => id ===String(req.userId)).length;
-      if (index === 0) {
-      comment[0].likes.push(req.userId);
-    } else {
-      comment[0].likes = comment[0].likes.filter((id) => id !== String(req.userId));
-    }
+    const comment = post.comments.filter((comment) => comment._id == commentId)[0];
+    
+    const index = comment.likes.findIndex((id) => id === String(req.userId));
+    const index2 = comment.likes.findIndex((id) => id === String("-1" + req.userId));
+    let newCommentLikes = comment.likes;
+  if(index == -1 && index2 == -1){
+    newCommentLikes.push(req.userId);
+  } else if(index2 > - 1){
+    newCommentLikes = newCommentLikes.filter((like) => !(like == String("-1" + req.userId)));
+    newCommentLikes.push(String(req.userId));
+  } else if (index > -1) {
+    newCommentLikes = newCommentLikes.filter((like) => !(like == String(req.userId)));
+
+  }
+  comment.likes = newCommentLikes;
+
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
     res.status(200).json(updatedPost);
   

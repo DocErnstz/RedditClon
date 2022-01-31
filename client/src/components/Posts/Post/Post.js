@@ -55,7 +55,7 @@ const Post = ({ post }) => {
                      <div className="flex-grow-1 d-flex align-items-center">
                        <i className="far fa-comment fa-2x"></i>
                        <div className="fw-bolder ms-1">
-                         {post.comments.length} <a  style={{textDecoration: "none"}} name="comment"  onClick={redirect} className="text-dark">{(Tvotes > 0) ? "" : "Comments"}</a></div>
+                         {post.comments.length} <a  style={{textDecoration: "none"}} name="comment"  onClick={redirect} className="text-dark">{"Comments"}</a></div>
                      </div>
                    </div>
                  </div>

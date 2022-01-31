@@ -8,7 +8,7 @@ const Form = () => {
   const [postData, setPostData] = useState({
     title: "",
     message: "",
-    subRedditName: ""
+    subRedditName: "Planets"
   });
 
   const dispatch = useDispatch();
